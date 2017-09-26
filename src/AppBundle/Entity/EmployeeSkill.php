@@ -35,6 +35,13 @@ class EmployeeSkill
     private $skill;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="level", type="smallint")
+     */
+    private $level;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
@@ -106,6 +113,22 @@ class EmployeeSkill
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * @param int $level
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+    }
+    
     /**
      * Get createdAt
      *

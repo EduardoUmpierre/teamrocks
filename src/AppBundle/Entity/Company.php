@@ -108,7 +108,6 @@ class Company
         return $this->cnpj;
     }
 
-
     /**
      * Get createdAt
      *

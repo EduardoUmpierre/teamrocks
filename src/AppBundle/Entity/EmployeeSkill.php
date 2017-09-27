@@ -128,7 +128,7 @@ class EmployeeSkill
     {
         $this->level = $level;
     }
-    
+
     /**
      * Get createdAt
      *

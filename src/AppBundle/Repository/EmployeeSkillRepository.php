@@ -10,4 +10,25 @@ namespace AppBundle\Repository;
  */
 class EmployeeSkillRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $skill
+     * @param $level
+     * @return array
+     */
+    public function getAllBySkill($skill, $level)
+    {
+        $query = $this->createQueryBuilder('es')
+            ->select('e.id, e.name, es.level')
+            ->join('AppBundle:Skill', 's', 'WITH', 'es.skill = s.id')
+            ->join('AppBundle:Employee', 'e', 'WITH', 'es.employee = e.id')
+            ->where('s.name = :skill')
+            ->andWhere('es.level >= :level')
+            ->orderBy('es.level', 'ASC')
+            ->setParameters([
+                'skill' => $skill,
+                'level' => $level
+            ]);
+
+        return $query->getQuery()->getArrayResult();
+    }
 }

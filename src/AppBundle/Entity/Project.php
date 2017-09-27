@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,6 +51,11 @@ class Project
     private $manager;
 
     /**
+     * @ORM\OneToMany(targetEntity="ProjectEmployee", mappedBy="project")
+     */
+    private $projectEmployee;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
@@ -62,6 +68,14 @@ class Project
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * Project constructor.
+     */
+    public function __construct()
+    {
+        $this->projectEmployee = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -167,6 +181,14 @@ class Project
         $this->manager = $manager;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProjectEmployee()
+    {
+        return $this->projectEmployee;
     }
 
     /**

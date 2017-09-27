@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,10 +37,15 @@ class ProjectEmployee
     private $employee;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Project")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="projectEmployee")
      * @ORM\JoinColumn(name="id_projects", referencedColumnName="id")
      */
     private $project;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ProjectEmployeeSkill", mappedBy="projectEmployee")
+     */
+    private $projectEmployeeSkill;
 
     /**
      * @var \DateTime
@@ -54,6 +60,14 @@ class ProjectEmployee
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * Project constructor.
+     */
+    public function __construct()
+    {
+        $this->projectEmployeeSkill = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -135,6 +149,22 @@ class ProjectEmployee
         $this->project = $project;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProjectEmployeeSkill()
+    {
+        return $this->projectEmployeeSkill;
+    }
+
+    /**
+     * @param mixed $projectEmployeeSkill
+     */
+    public function setProjectEmployeeSkill($projectEmployeeSkill)
+    {
+        $this->projectEmployeeSkill = $projectEmployeeSkill;
     }
 
     /**

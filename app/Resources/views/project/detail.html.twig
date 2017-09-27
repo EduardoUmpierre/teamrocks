@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('new_project') }}">Novo projeto</a>
+
+    <h1>Projeto criado</h1>
+    <p>Nome: {{ project.title }}</p>
+    <p>Descrição: {{ project.description }}</p>
+    <p>Prazo: {{ project.deadline | date('d/m/Y') }}</p>
+    <p>Gestor: {{ project.manager.name }}</p>
+
+    <h2>Funcionários no projeto:</h2>
+    <ul>
+        {% for projectEmployee in project.projectEmployee %}
+        <li>
+            <p>Nome: {{ projectEmployee.employee.name }}</p>
+
+            <p>Funções:</p>
+            <ul>
+            {% for projectEmployeeSkill in projectEmployee.projectEmployeeSkill %}
+                <li>{{ projectEmployeeSkill.skill.name }}</li>
+            {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

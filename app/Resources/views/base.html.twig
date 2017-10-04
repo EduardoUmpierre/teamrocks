@@ -7,8 +7,20 @@
         {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
     </head>
     <body>
+        {% block header %}
+            <header>
+                <h1>Team.rocks</h1>
+            </header>
+        {% endblock %}
+
         {% block body %}{% endblock %}
 
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('assets/js/vue/vue.js') }}"></script>
+            <script src="{{ asset('assets/js/vue/vue-resource.js') }}"></script>
+
+            <script src="{{ asset('assets/js/vue/components/project-item.js') }}"></script>
+            <script src="{{ asset('assets/js/vue/app.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

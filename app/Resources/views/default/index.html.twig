@@ -6,4 +6,16 @@
     {% if message is not empty %}
         <h1>{{ message }}</h1>
     {% endif %}
+
+    <div id="app">
+        <h2>Projetos criados</h2>
+
+        <ul>
+            <project-item
+                v-for="project in projects"
+                v-bind:project="project"
+                v-bind:key="project.id">
+            </project-item>
+        </ul>
+    </div>
 {% endblock %}

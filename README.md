@@ -39,6 +39,6 @@ Como rodar a aplicação
 
 [5]:  https://github.com/andrecarello
 [6]:  https://github.com/andreicruz
-[7]:  https://github.com/andreicruz
+[7]:  https://github.com/xeliasinfo
 [8]:  https://github.com/eduardoumpierre
 [9]:  https://github.com/phebaltha

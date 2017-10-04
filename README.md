@@ -6,6 +6,7 @@ Aplicação de controle de projetos desenvolvida para a cadeira de Projeto de de
 Tecnologias utilizadas
 ----------------------
 * [Symfony framework][1];
+* [Vue.js][4];
 * [Doctrine ORM 2][2].
 
 Requisitos
@@ -25,3 +26,4 @@ Como rodar a aplicação
 [1]:  https://symfony.com/
 [2]:  http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/
 [3]:  https://getcomposer.org/
+[4]:  https://vuejs.org/

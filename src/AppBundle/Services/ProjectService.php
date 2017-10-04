@@ -38,6 +38,14 @@ class ProjectService
     }
 
     /**
+     * @return array
+     */
+    public function findAll()
+    {
+        return $this->repository->findAll();
+    }
+
+    /**
      * @param $data
      * @return int
      */

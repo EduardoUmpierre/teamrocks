@@ -3,11 +3,20 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Services\ProjectService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class ProjectController
+ * @package AppBundle\Controller
+ *
+ * @todo Inserir prefixo de controller api/v1
+ * @todo Migrar todo o funcionamento para API RESTful
+ */
 class ProjectController extends Controller
 {
     /**
@@ -51,5 +60,14 @@ class ProjectController extends Controller
         return $this->render('project/detail.html.twig', [
             'project' => $project
         ]);
+    }
+
+    /**
+     * @Route("/api/v1/projects")
+     * @Method("GET")
+     */
+    public function getAction(ProjectService $projectService)
+    {
+        return new JsonResponse($projectService->findAll());
     }
 }

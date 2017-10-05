@@ -77,6 +77,6 @@ class ProjectController extends Controller
      */
     public function getOneAction(ProjectService $projectService, $id)
     {
-        return new JsonResponse($projectService->findOneArrayById($id));
+        return new JsonResponse($projectService->findOneDataById($id));
     }
 }

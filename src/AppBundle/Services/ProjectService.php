@@ -46,11 +46,15 @@ class ProjectService
     }
 
     /**
-     * @return array
+     * @param $id
+     * @return mixed
      */
-    public function findOneArrayById($id) 
+    public function findOneDataById($id)
     {
-        return $this->repository->findOneById($id);
+        $project = $this->repository->findOneArrayById($id);
+        $project['team'] = $this->projectEmployeeService->findAllByProject($project['id']);
+
+        return $project;
     }
 
     /**

@@ -10,4 +10,21 @@ namespace AppBundle\Repository;
  */
 class ProjectEmployeeSkillRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $projectEmployeesId
+     * @return array
+     */
+    public function findAllByProjectEmployee($projectEmployeesId)
+    {
+        $query = $this->createQueryBuilder('pes')
+            ->select('s.name, es.level')
+            ->join('AppBundle:EmployeeSkill', 'es', 'WITH', 'es.skill = pes.skill')
+            ->join('AppBundle:Skill', 's', 'WITH', 's.id = es.skill')
+            ->where('pes.projectEmployee = :projectEmployeesId')
+            ->setParameter('projectEmployeesId', $projectEmployeesId)
+            ->groupBy('s.id')
+            ->getQuery()->getArrayResult();
+
+        return $query;
+    }
 }

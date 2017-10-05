@@ -22,12 +22,15 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $query;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findOneArrayById($id)
     {
         $query = $this->createQueryBuilder('p')
-            ->select('p.id, p.title, p.description, e.name')
-            ->join('AppBundle:ProjectEmployee', 'pe', 'WITH', 'p.id = pe.project')
-            ->join('AppBundle:Employee', 'e', 'WITH', 'e.id = pe.employee')
+            ->select('p.id, p.title, p.description')
             ->where('p.id = :id')
             ->setParameter('id', $id)
             ->setMaxResults(1)

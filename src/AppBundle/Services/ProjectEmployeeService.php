@@ -44,4 +44,19 @@ class ProjectEmployeeService
             }
         }
     }
+
+    /**
+     * @param $projectId
+     * @return mixed
+     */
+    public function findAllByProject($projectId)
+    {
+        $team = $this->repository->findAllByProject($projectId);
+
+        foreach ($team as $key => $val) {
+            $team[$key]['skills'] = $this->projectEmployeeSkillService->findAllByProjectEmployee($val['pe_id']);
+        }
+
+        return $team;
+    }
 }

@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManager;
 class ProjectEmployeeSkillService
 {
     private $em;
+    private $repository;
     private $skillService;
 
     /**
@@ -17,6 +18,7 @@ class ProjectEmployeeSkillService
     public function __construct(EntityManager $em, SkillService $ss)
     {
         $this->em = $em;
+        $this->repository = $em->getRepository('AppBundle:ProjectEmployeeSkill');
         $this->skillService = $ss;
     }
 
@@ -32,5 +34,14 @@ class ProjectEmployeeSkillService
 
         $this->em->persist($projectEmployeeSkill);
         $this->em->flush();
+    }
+
+    /**
+     * @param $projectEmployeeId
+     * @return mixed
+     */
+    public function findAllByProjectEmployee($projectEmployeeId)
+    {
+        return $this->repository->findAllByProjectEmployee($projectEmployeeId);
     }
 }

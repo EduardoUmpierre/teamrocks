@@ -10,4 +10,19 @@ namespace AppBundle\Repository;
  */
 class ProjectEmployeeRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $projectId
+     * @return array
+     */
+    public function findAllByProject($projectId)
+    {
+        $query = $this->createQueryBuilder('pe')
+            ->select('pe.id as pe_id, e.id, e.name')
+            ->join('AppBundle:Employee', 'e', 'WITH', 'e.id = pe.employee')
+            ->where('pe.project = :projectId')
+            ->setParameter('projectId', $projectId)
+            ->getQuery()->getArrayResult();
+
+        return $query;
+    }
 }

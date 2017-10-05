@@ -3,46 +3,42 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/lib/bootstrap.min.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.css') }}">
         {% endblock %}
+
         {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
     </head>
     <body>
         {% block header %}
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="javascript:void(0)"><img src="{{ asset('assets/images/team-rocks-logo.jpg') }}" alt="TEAM ROCKS"></a>
-                </div>
-                <div class="tr_offcanvas">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>Bem Vindo, <strong>TEAM.ROCKS</strong></li>
-                    </ul>
-                </div><!-- end of offcanvas menu -->
-            </div><!-- end of /.container -->
-        </nav>
-            <!-- <header>
-                <h1>Team.rocks</h1>
-            </header> -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/#/">
+                            <img src="{{ asset('assets/images/team-rocks-logo.jpg') }}" alt="Team.Rocks">
+                        </a>
+                    </div>
+
+                    <div class="tr_offcanvas">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>Bem Vindo, <strong>TEAM.ROCKS</strong></li>
+                        </ul>
+                    </div><!-- end of offcanvas menu -->
+                </div><!-- end of /.container -->
+            </nav>
         {% endblock %}
 
         {% block body %}{% endblock %}
 
         {% block javascripts %}
-
             <script type="text/javascript" src="{{ asset('assets/js/lib/jquery-2.2.4.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('assets/js/lib/bootstrap.min.js') }}"></script>       
+            <script type="text/javascript" src="{{ asset('assets/js/lib/bootstrap.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/lib/jquery.match-height.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
-            
-            <script src="{{ asset('assets/js/vue/vue.min.js') }}"></script>
-            <script src="{{ asset('assets/js/vue/vue-router.js') }}"></script>
-            <script src="{{ asset('assets/js/vue/vue-resource.min.js') }}"></script>
 
-            <script src="{{ asset('assets/js/vue/components/project-item.js') }}"></script>
-            <script src="{{ asset('assets/js/vue/app.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/dist/build.js') }}"></script>
         {% endblock %}
     </body>
 </html>

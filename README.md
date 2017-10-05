@@ -15,21 +15,26 @@ Tecnologias utilizadas
 ----------------------
 * [Symfony framework][1];
 * [Vue.js][4];
+* [Babel][10];
+* [Webpack][11];
 * [Doctrine ORM 2][2].
 
 Requisitos
 ----------
 * PHP >= 5.5.9;
+* [NodeJS][12];
 * [Composer][3].
 
 Como rodar a aplicação
 ----------------------
 * Clone o repositório;
-* Crie o banco de dados;
-* Instale as dependências ```composer install```;
+* Crie o banco de dados (teamrocks);
+* Instale as dependências da API ```composer install```;
+* Instale as dependências de front-end ```npm install```;
 * Gere as tabelas ```php bin/console doctrine:schema:create```;
 * Importe o dump do banco de dados;
 * Rode o servidor local ```php bin/console server:run```;
+* Em outro console rode build do webpack ```npm run dev```;
 * Pronto!
 
 [1]:  https://symfony.com/
@@ -42,3 +47,7 @@ Como rodar a aplicação
 [7]:  https://github.com/xeliasinfo
 [8]:  https://github.com/eduardoumpierre
 [9]:  https://github.com/phebaltha
+
+[10]: https://babeljs.io/
+[11]: https://webpack.js.org/
+[12]: https://nodejs.org/

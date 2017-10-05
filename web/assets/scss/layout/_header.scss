@@ -1,0 +1,61 @@
+header{
+
+  &.tr_header_home {
+
+    $height: 750px;
+
+    height: $height;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    background: {
+      repeat: no-repeat;
+      size: cover;
+    }
+
+    .tr_header_overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      background-color: transparentize($gray, .01);
+
+      @include flexbox;
+      @include justify-content(center);
+      @include align-items(center);
+      @include flex-flow(column);
+      text-align: center;
+
+      h4 {
+        font-size: rem(20);
+        color: $light_gray;
+        margin: {
+          top: 0;
+          bottom: 0;
+        };
+
+        @media only screen and (min-width: 768px) {
+          font-size: rem(45);
+        }
+      }
+
+      h1 {
+        font-size: rem(45);
+        color: $light_gray;
+        font-weight: 700;
+        margin: {
+          top: 0;
+          bottom: 25px;
+        };
+
+
+        @media only screen and (min-width: 768px) {
+          font-size: rem(75)
+        }
+      }
+    }
+  }
+}

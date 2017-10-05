@@ -46,6 +46,14 @@ class ProjectService
     }
 
     /**
+     * @return array
+     */
+    public function findOneArrayById($id) 
+    {
+        return $this->repository->findOneById($id);
+    }
+
+    /**
      * @param $data
      * @return int
      */

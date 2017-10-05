@@ -66,8 +66,17 @@ class ProjectController extends Controller
      * @Route("/api/v1/projects")
      * @Method("GET")
      */
-    public function getAction(ProjectService $projectService)
+    public function getAllAction(ProjectService $projectService)
     {
         return new JsonResponse($projectService->findAll());
+    }
+
+    /**
+     * @Route("/api/v1/projects/{id}")
+     * @Method("GET")
+     */
+    public function getOneAction(ProjectService $projectService, $id)
+    {
+        return new JsonResponse($projectService->findOneArrayById($id));
     }
 }

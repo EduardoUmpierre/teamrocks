@@ -1,21 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('new_project') }}">Novo projeto</a>
-
-    {% if message is not empty %}
-        <h1>{{ message }}</h1>
-    {% endif %}
-
     <div id="app">
-        <h2>Projetos criados</h2>
+        <header class="tr_header_home" style="background-image: url('assets/images/d63b8b7f1ff71a1fec8d4059a034f08c.jpg');" data-speed="-6">
+		    <div class="tr_header_overlay">
+		        <div class="container">
+		            <h4>Dê os primeiros passos</h4>
+		            <h1>
+		                Monte seu projeto e crie seu time dos sonhos!
+		            </h1>
 
-        <ul>
-            <project-item
-                v-for="project in projects"
-                v-bind:project="project"
-                v-bind:key="project.id">
-            </project-item>
-        </ul>
+		           <a href="{{ path('new_project') }}" class="tr_button tr_button_green">Novo projeto</a>
+		        </div>
+		    </div>
+		</header>
+
+		<main class="tr_content_home" id="app">
+		    <div class="container">
+		        <h2>Projetos criados</h2>
+
+		        <div class="row">
+		            <project-item
+		                v-for="project in projects"
+		                v-bind:project="project"
+		                v-bind:key="project.id">
+		            </project-item>
+		        </div>
+		    </div>
+		</main>
     </div>
 {% endblock %}

@@ -1,0 +1,54 @@
+.tr_footer{
+
+  $height: 247px;
+
+  background-color: $gray;
+  height: $height;
+  position: relative;
+
+  margin: {
+    top: 95px;
+  };
+
+  .container{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+
+  .row{
+    height: $height / 2;
+    @include flexbox;
+    @include justify-content(space-around);
+    @include align-items(center);
+  }
+
+  ul{
+    list-style: none;
+    padding: 0;
+
+    li{
+      padding: 0 10px 0;
+      border-right: 1px solid transparentize($white, .95);
+      color: $light_gray;
+      height: 35px;
+      line-height: 35px;
+      display: inline-block;
+
+      &:last-of-type{
+        border-right: 0;
+      }
+
+      a{
+        display: inline-block;
+        img{
+          height: 25px;
+        }
+      }
+    }
+  }
+}

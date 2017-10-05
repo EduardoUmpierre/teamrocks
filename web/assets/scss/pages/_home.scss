@@ -1,0 +1,47 @@
+.tr_content_home{
+
+  h2{
+    color: $gray;
+    font-size: rem(40);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: {
+      top: 50px;
+      bottom: 50px;
+    }
+    position: relative;
+    display: inline-block;
+
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+
+      height: 6px;
+      width: 40%;
+      background-color: $gray;
+    }
+  }
+
+  figure{
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    border-radius: 5px;
+    background-color: transparentize($blue_gray, .45);
+
+    img{
+
+    }
+  }
+
+  p{
+    color: $blue_gray;
+    font-size: rem(17);
+    line-height: 160%;
+  }
+}

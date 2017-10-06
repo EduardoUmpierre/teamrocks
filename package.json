@@ -1,6 +1,6 @@
 {
-  "name": "teste",
-  "description": "A Vue.js project",
+  "name": "Team.rocks",
+  "description": "Sistema de controle de projetos",
   "version": "1.0.0",
   "author": "Eduardo Pieretti Umpierre <eduardoumpierre@hotmail.com>",
   "private": true,

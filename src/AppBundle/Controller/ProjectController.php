@@ -2,14 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Project;
 use AppBundle\Services\ProjectService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ProjectController
@@ -47,16 +46,8 @@ class ProjectController extends Controller
     {
         $project = json_decode($request->getContent(), true);
 
-        dump($project);
+        $projectService->create($project);
 
-        exit;
-
-        $project = $projectService->create($project);
-
-        if ($project instanceof Exception) {
-            return $this->redirectToRoute('homepage', ['message' => $project->getMessage()]);
-        }
-
-        return $this->redirectToRoute('detail_project', ['id' => $project]);
+        return new Response(null, 201);
     }
 }

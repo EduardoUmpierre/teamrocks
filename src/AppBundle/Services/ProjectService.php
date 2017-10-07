@@ -65,11 +65,11 @@ class ProjectService
     {
         try {
             $team = $this->employeeSkillService->getTeamByRequirements($data['requirements']);
+
+            $project = $this->insert($data);
         } catch (Exception $e) {
             return $e;
         }
-
-        $project = $this->insert($data);
 
         $this->projectEmployeeService->insert($team, $project);
 
@@ -86,7 +86,7 @@ class ProjectService
         $project->setTitle($data['title']);
         $project->setManager($this->managerService->findOneById($data['manager']));
         $project->setDescription($data['description']);
-        $project->setDeadline($data['deadline']);
+        $project->setDeadline(new \DateTime($data['deadline']));
 
         $this->em->persist($project);
         $this->em->flush();

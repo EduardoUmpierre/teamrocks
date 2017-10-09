@@ -10,7 +10,11 @@
                         Monte seu projeto e crie seu time dos sonhos!
                     </h1>
 
-                    <a href="#" class="tr_button tr_button_green">Novo projeto</a>
+                    <router-link
+                        :to="{ name: 'project_new' }"
+                        class="tr_button tr_button_green">
+                        Novo projeto
+                    </router-link>
                 </div>
             </div>
         </header>

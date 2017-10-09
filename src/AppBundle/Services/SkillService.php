@@ -19,6 +19,15 @@ class SkillService
     }
 
     /**
+     * @param $id
+     * @return null|object
+     */
+    public function findOneById($id)
+    {
+        return $this->repository->findOneBy(['id' => $id]);
+    }
+
+    /**
      * @param $name
      * @return null|object
      */

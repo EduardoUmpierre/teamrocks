@@ -30,7 +30,7 @@ class ProjectEmployeeSkillService
     {
         $projectEmployeeSkill = new ProjectEmployeeSkill();
         $projectEmployeeSkill->setProjectEmployee($projectEmployee);
-        $projectEmployeeSkill->setSkill($this->skillService->findOneByName($skill));
+        $projectEmployeeSkill->setSkill($this->skillService->findOneById($skill));
 
         $this->em->persist($projectEmployeeSkill);
         $this->em->flush();

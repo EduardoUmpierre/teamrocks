@@ -39,20 +39,19 @@ class EmployeeSkillService
     /**
      * @param $employeesSkills
      * @param $requirements
+     * @param $quantity
      * @return array
      */
-    private function getTeamByLimit($employeesSkills, $requirements)
+    private function getTeamByLimit($employeesSkills, $requirements, $quantity)
     {
-        $requiredSkills = $requirements['skills'];
-        $limit = $requirements['quantity'];
         $team = [];
 
         $employees = $this->normalizeEmployeesData($employeesSkills);
 
         foreach ($employees as $key => $val) {
             foreach ($val['skills'] as $_key => $_val) {
-                if (isset($requiredSkills[$_val])) {
-                    unset($requiredSkills[$_val]);
+                if (isset($requirements[$_val])) {
+                    unset($requirements[$_val]);
 
                     if ($this->verifyIfItsUnique($team, $val)) {
                         array_push($team, $val);
@@ -60,7 +59,7 @@ class EmployeeSkillService
                 }
             }
 
-            if (empty($requiredSkills) && count($team) <= $limit) {
+            if (empty($requirements) && count($team) <= $quantity) {
                 return $team;
             }
         }
@@ -117,12 +116,13 @@ class EmployeeSkillService
 
     /**
      * @param $requirements
+     * @param $quantity
      * @return array
      */
-    public function getTeamByRequirements($requirements)
+    public function getTeamByRequirements($requirements, $quantity)
     {
-        $employeesSkills = $this->getAllBySkill($requirements['skills']);
+        $employeesSkills = $this->getAllBySkill($requirements);
 
-        return $this->getTeamByLimit($employeesSkills, $requirements);
+        return $this->getTeamByLimit($employeesSkills, $requirements, $quantity);
     }
 }

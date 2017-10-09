@@ -21,7 +21,7 @@ class EmployeeSkillRepository extends \Doctrine\ORM\EntityRepository
             ->select('e.id, e.name, es.level')
             ->join('AppBundle:Skill', 's', 'WITH', 'es.skill = s.id')
             ->join('AppBundle:Employee', 'e', 'WITH', 'es.employee = e.id')
-            ->where('s.name = :skill')
+            ->where('s.id = :skill')
             ->andWhere('es.level >= :level')
             ->orderBy('es.level', 'ASC')
             ->setParameters([

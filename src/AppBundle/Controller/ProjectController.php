@@ -6,6 +6,7 @@ use AppBundle\Services\ProjectService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
  * Class ProjectController
  * @package AppBundle\Controller
  * @Route("/api/v1")
- *
- * @todo Inserir prefixo de controller api/v1
- * @todo Migrar todo o funcionamento para API RESTful
  */
 class ProjectController extends Controller
 {
@@ -46,8 +44,12 @@ class ProjectController extends Controller
     {
         $project = json_decode($request->getContent(), true);
 
-        $projectService->create($project);
+        $result = $projectService->create($project);
 
-        return new Response(null, 201);
+        if ($result instanceof Exception) {
+            return new JsonResponse(['message' => $result->getMessage()], 400);
+        }
+
+        return new JsonResponse(['id' => $result], 201);
     }
 }

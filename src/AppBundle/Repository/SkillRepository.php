@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class SkillRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return array
+     */
+    public function findAll()
+    {
+        $query = $this->createQueryBuilder('s')
+            ->select('s.id, s.name')
+            ->getQuery()->getArrayResult();
+
+        return $query;
+    }
 }

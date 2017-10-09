@@ -29,10 +29,15 @@
 
                     <div class="form-group">
                         <label for="quantity">Quantidade máxima de componentes no time</label>
-                        <input type="text" name="quantity" class="form-control" id="quantity" v-model="project.quantity">
+                        <input type="text" name="quantity" class="form-control" id="quantity"
+                               v-model="project.quantity">
                     </div>
 
-                    <h3>Backlog <button class="btn btn-primary" type="button" v-on:click="addBacklogItem">Adicionar item</button></h3>
+                    <h3>Backlog
+                        <button class="btn btn-primary" type="button" v-on:click="addBacklogItem">
+                            Adicionar item
+                        </button>
+                    </h3>
 
                     <ol>
                         <li v-for="task in project.backlog" class="row">
@@ -46,7 +51,10 @@
                             </div>
                             <div class="form-group col-xs-3">
                                 <label>Competência necessária</label>
-                                <input type="text" class="form-control" v-model="task.skill">
+
+                                <select class="form-control" v-model="task.skill">
+                                    <option v-bind:value="skill.id" v-for="skill in skills">{{ skill.name }}</option>
+                                </select>
                             </div>
                             <div class="form-group col-xs-3">
                                 <label>Nível</label>
@@ -69,6 +77,7 @@
         name: 'project-new',
         data: function () {
             return {
+                skills: [],
                 project: {
                     title: 'Título do projeto',
                     description: 'Descrição do projeto',
@@ -94,18 +103,23 @@
         },
         methods: {
             create: function () {
-                this.$http.post('/api/v1/projects', this.project, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+                this.$http.post('/api/v1/projects', this.project, {headers: {'Content-Type': 'application/json'}})
                         .then(function (response) {
                             console.log(response.data);
 
                             if (response.status == 201 && response.data.id) {
                                 this.$router.push({name: 'project_detail', params: {id: response.data.id}});
                             }
+                        }, function (error) {
+                            console.log(error);
+                        });
+            },
+            getSkills: function () {
+                this.$http.get('/api/v1/skills')
+                        .then(function (response) {
+                            console.log(response.data);
 
+                            this.skills = response.data;
                         }, function (error) {
                             console.log(error);
                         });
@@ -118,6 +132,9 @@
                     level: 1
                 });
             }
+        },
+        mounted: function () {
+            this.getSkills();
         }
     }
 </script>

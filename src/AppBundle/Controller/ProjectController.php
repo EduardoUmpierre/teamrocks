@@ -22,7 +22,7 @@ class ProjectController extends Controller
      * @Route("/projects")
      * @Method("GET")
      */
-    public function getAllAction(ProjectService $projectService)
+    public function indexAction(ProjectService $projectService)
     {
         return new JsonResponse($projectService->findAll());
     }
@@ -31,7 +31,7 @@ class ProjectController extends Controller
      * @Route("/projects/{id}")
      * @Method("GET")
      */
-    public function getOneAction(ProjectService $projectService, $id)
+    public function showAction(ProjectService $projectService, $id)
     {
         return new JsonResponse($projectService->findOneDataById($id));
     }

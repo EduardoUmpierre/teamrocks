@@ -51,11 +51,17 @@ class EmployeeSkillService
         foreach ($employees as $key => $val) {
             foreach ($val['skills'] as $_key => $_val) {
                 if (isset($requirements[$_val])) {
-                    unset($requirements[$_val]);
-
-                    if ($this->verifyIfItsUnique($team, $val)) {
-                        array_push($team, $val);
+                    if ($this->verifyIfItsUnique($team, $val['id'])) {
+                        $team[$val['id']] = [
+                            'id' => $val['id'],
+                            'name' => $val['name'],
+                            'skills' => []
+                        ];
                     }
+
+                    $team[$val['id']]['skills'][$_val] = $requirements[$_val];
+
+                    unset($requirements[$_val]);
                 }
             }
 
@@ -98,20 +104,12 @@ class EmployeeSkillService
 
     /**
      * @param $team
-     * @param $employee
+     * @param $employeeId
      * @return bool
      */
-    private function verifyIfItsUnique($team, $employee)
+    private function verifyIfItsUnique($team, $employeeId)
     {
-        $unique = true;
-
-        foreach ($team as $k => $v) {
-            if ($v['id'] == $employee['id']) {
-                $unique = false;
-            }
-        }
-
-        return $unique;
+        return !isset($team[$employeeId]);
     }
 
     /**

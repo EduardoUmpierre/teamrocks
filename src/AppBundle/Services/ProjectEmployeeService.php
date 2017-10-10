@@ -40,7 +40,7 @@ class ProjectEmployeeService
             $this->em->flush();
 
             foreach ($val['skills'] as $_key => $_val) {
-                $this->projectEmployeeSkillService->insert($projectEmployee, $_val);
+                $this->projectEmployeeSkillService->insert($projectEmployee, $_key);
             }
         }
     }

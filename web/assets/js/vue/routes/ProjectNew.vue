@@ -12,8 +12,8 @@
 
                     <div class="form-group">
                         <label for="description">Descrição</label>
-                        <input type="text" name="description" class="form-control" id="description"
-                               v-model="project.description">
+                        <textarea name="description" class="form-control" id="description"
+                                  v-model="project.description"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -109,24 +109,24 @@
         methods: {
             create: function () {
                 this.$http.post('/api/v1/projects', this.project, {headers: {'Content-Type': 'application/json'}})
-                        .then(function (response) {
-                            console.log(response.data);
+                    .then(function (response) {
+                        console.log(response.data);
 
-                            if (response.status == 201 && response.data.id) {
-                                this.$router.push({name: 'project_detail', params: {id: response.data.id}});
-                            }
-                        }, function (error) {
-                            console.log(error);
-                        });
+                        if (response.status == 201 && response.data.id) {
+                            this.$router.push({name: 'project_detail', params: {id: response.data.id}});
+                        }
+                    }, function (error) {
+                        console.log(error);
+                    });
             },
             getSkills: function () {
                 this.$http.get('/api/v1/skills')
-                        .then(function (response) {
-                            console.log(response.data);
-                            this.skills = response.data;
-                        }, function (error) {
-                            console.log(error);
-                        });
+                    .then(function (response) {
+                        console.log(response.data);
+                        this.skills = response.data;
+                    }, function (error) {
+                        console.log(error);
+                    });
             },
             addTask: function () {
                 this.project.backlog.push({
@@ -136,7 +136,7 @@
                     level: 1
                 });
             },
-            removeTask: function(id, event) {
+            removeTask: function (id, event) {
                 if (event)
                     event.preventDefault();
 

@@ -103,6 +103,24 @@
                             description: 'O que deve ser feito',
                             skill: 2,
                             level: 2
+                        },
+                        {
+                            title: 'Exemplo',
+                            description: 'O que deve ser feito',
+                            skill: 3,
+                            level: 2
+                        },
+                        {
+                            title: 'Exemplo',
+                            description: 'O que deve ser feito',
+                            skill: 4,
+                            level: 2
+                        },
+                        {
+                            title: 'Exemplo',
+                            description: 'O que deve ser feito',
+                            skill: 5,
+                            level: 2
                         }
                     ]
                 }

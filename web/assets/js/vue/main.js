@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import Notifications from 'vue-notification'
 
 import Home from './routes/Home.vue'
 import ProjectView from './routes/ProjectView.vue'
 import ProjectNew from './routes/ProjectNew.vue'
 
+Vue.use(Notifications)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 

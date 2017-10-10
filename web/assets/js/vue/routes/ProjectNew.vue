@@ -69,11 +69,13 @@
                     </ol>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                        <button type="submit" class="btn btn-primary">Gerar equipe</button>
                     </div>
                 </form>
             </div>
         </main>
+
+        <notifications group="message" position="bottom right" />
     </div>
 </template>
 
@@ -117,6 +119,13 @@
                         }
                     }, function (error) {
                         console.log(error);
+
+                        this.$notify({
+                            group: 'message',
+                            title: 'Aviso',
+                            text: error.body.message,
+                            type: 'warn'
+                        });
                     });
             },
             getSkills: function () {

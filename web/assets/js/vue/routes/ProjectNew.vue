@@ -34,13 +34,13 @@
                     </div>
 
                     <h3>Backlog
-                        <button class="btn btn-primary" type="button" v-on:click="addBacklogItem">
+                        <button class="btn btn-primary" type="button" v-on:click="addTask">
                             Adicionar item
                         </button>
                     </h3>
 
                     <ol>
-                        <li v-for="task in project.backlog" class="row">
+                        <li v-for="(task, index) in project.backlog" class="row">
                             <div class="form-group col-xs-3">
                                 <label>Título</label>
                                 <input type="text" class="form-control" v-model="task.title">
@@ -56,9 +56,14 @@
                                     <option v-bind:value="skill.id" v-for="skill in skills">{{ skill.name }}</option>
                                 </select>
                             </div>
-                            <div class="form-group col-xs-3">
+                            <div class="form-group col-xs-2">
                                 <label>Nível</label>
                                 <input type="text" class="form-control" v-model="task.level">
+                            </div>
+                            <div class="form-group col-xs-1">
+                                <a href="#" v-on:click="removeTask(index, $event)">
+                                    X
+                                </a>
                             </div>
                         </li>
                     </ol>
@@ -118,19 +123,24 @@
                 this.$http.get('/api/v1/skills')
                         .then(function (response) {
                             console.log(response.data);
-
                             this.skills = response.data;
                         }, function (error) {
                             console.log(error);
                         });
             },
-            addBacklogItem: function () {
+            addTask: function () {
                 this.project.backlog.push({
                     title: 'Exemplo',
                     description: 'O que deve ser feito',
                     skill: 1,
                     level: 1
                 });
+            },
+            removeTask: function(id, event) {
+                if (event)
+                    event.preventDefault();
+
+                this.project.backlog.splice(id, 1);
             }
         },
         mounted: function () {

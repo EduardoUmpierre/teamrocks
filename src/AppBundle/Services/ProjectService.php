@@ -63,7 +63,7 @@ class ProjectService
 
     /**
      * @param $data
-     * @return int
+     * @return \Exception|int|Exception
      */
     public function create($data)
     {
@@ -74,6 +74,8 @@ class ProjectService
 
             $team = $this->employeeSkillService->getTeamByRequirements($requirements, $data['quantity']);
         } catch (Exception $e) {
+            $this->remove($project);
+
             return $e;
         }
 
@@ -98,5 +100,14 @@ class ProjectService
         $this->em->flush();
 
         return $project;
+    }
+
+    /**
+     * @param Project $project
+     */
+    private function remove(Project $project)
+    {
+        $this->em->remove($project);
+        $this->em->flush();
     }
 }

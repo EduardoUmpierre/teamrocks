@@ -38,7 +38,7 @@ class ProjectTask
 
     /**
      * @ORM\ManyToOne(targetEntity="Project")
-     * @ORM\JoinColumn(name="id_projects", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_projects", referencedColumnName="id", onDelete="CASCADE")
      */
     private $project;
 

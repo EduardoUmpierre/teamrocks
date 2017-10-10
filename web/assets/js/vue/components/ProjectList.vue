@@ -11,11 +11,7 @@
 
             <h3>{{ project.title }}</h3>
 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto asperiores consectetur ipsa
-                maiores natus nostrum obcaecati, perspiciatis sit? Commodi doloremque harum ipsam libero minima odio
-                quia quis velit vitae.
-            </p>
+            <p>{{ project.description }}</p>
         </router-link>
     </div>
 </template>

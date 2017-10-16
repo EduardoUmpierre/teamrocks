@@ -14,12 +14,12 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Class ProjectController
  * @package AppBundle\Controller
- * @Route("/api/v1")
+ * @Route("/api/v1/projects")
  */
 class ProjectController extends Controller
 {
     /**
-     * @Route("/projects")
+     * @Route("")
      * @Method("GET")
      */
     public function indexAction(ProjectService $projectService)
@@ -28,7 +28,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * @Route("/projects/{id}")
+     * @Route("/{id}")
      * @Method("GET")
      */
     public function showAction(ProjectService $projectService, $id)
@@ -37,7 +37,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * @Route("/projects")
+     * @Route("")
      * @Method("POST")
      */
     public function newAction(Request $request, ProjectService $projectService)

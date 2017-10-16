@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Class SkillController
  * @package AppBundle\Controller
- * @Route("/api/v1")
+ * @Route("/api/v1/skills")
  */
 class SkillController extends Controller
 {
     /**
-     * @Route("/skills")
+     * @Route("")
      * @Method("GET")
      */
     public function indexAction(SkillService $skillService)

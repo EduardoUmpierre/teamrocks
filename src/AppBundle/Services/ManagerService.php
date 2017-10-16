@@ -17,6 +17,14 @@ class ManagerService
     }
 
     /**
+     * @return array
+     */
+    public function findAll()
+    {
+        return $this->repository->findAll();
+    }
+
+    /**
      * @param $id
      * @return null|object
      */

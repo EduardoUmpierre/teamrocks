@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class ManagerRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return array
+     */
+    public function findAll()
+    {
+        $query = $this->createQueryBuilder('m')
+            ->select('m.id, m.name')
+            ->getQuery()->getArrayResult();
+
+        return $query;
+    }
 }

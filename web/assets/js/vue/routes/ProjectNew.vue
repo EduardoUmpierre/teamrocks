@@ -24,7 +24,10 @@
 
                     <div class="form-group">
                         <label for="manager">Gestor</label>
-                        <input type="text" name="manager" class="form-control" id="manager" v-model="project.manager">
+
+                        <select id="manager" class="form-control" v-model="project.manager">
+                            <option v-bind:value="manager.id" v-for="manager in managers">{{ manager.name }}</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -85,6 +88,7 @@
         data: function () {
             return {
                 skills: [],
+                managers: [],
                 project: {
                     title: 'Título do projeto',
                     description: 'Descrição do projeto',
@@ -155,6 +159,15 @@
                         console.log(error);
                     });
             },
+            getManagers: function () {
+                this.$http.get('/api/v1/managers')
+                        .then(function (response) {
+                            console.log(response.data);
+                            this.managers = response.data;
+                        }, function (error) {
+                            console.log(error);
+                        });
+            },
             addTask: function () {
                 this.project.backlog.push({
                     title: 'Exemplo',
@@ -172,6 +185,7 @@
         },
         mounted: function () {
             this.getSkills();
+            this.getManagers();
         }
     }
 </script>

@@ -9,6 +9,9 @@
 
                 <h2>Equipe</h2>
                 <team-list v-bind:team="project.team"></team-list>
+
+                <h2>Tasks</h2>
+                <task-list v-bind:tasks="project.tasks"></task-list>
             </div>
         </main>
     </div>
@@ -16,11 +19,13 @@
 
 <script>
     import TeamList from '../components/TeamList.vue'
+    import TaskList from '../components/TaskList.vue'
 
     export default {
         name: 'project-view',
         components: {
-            'team-list': TeamList
+            'team-list': TeamList,
+            'task-list': TaskList
         },
         data: function () {
             return {

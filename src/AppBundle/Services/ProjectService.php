@@ -57,6 +57,7 @@ class ProjectService
     {
         $project = $this->repository->findOneArrayById($id);
         $project['team'] = $this->projectEmployeeService->findAllByProject($project['id']);
+        $project['tasks'] = $this->projectTaskService->findAllByProject($project['id']);
 
         return $project;
     }
@@ -68,17 +69,14 @@ class ProjectService
     public function create($data)
     {
         try {
-            $project = $this->insert($data);
-
-            $requirements = $this->projectTaskService->getRequirementsByBacklog($project, $data['backlog']);
-
-            $team = $this->employeeSkillService->getTeamByRequirements($requirements, $data['quantity']);
+            $team = $this->employeeSkillService->getTeamByBacklog($data['backlog'], $data['quantity']);
         } catch (Exception $e) {
-            $this->remove($project);
-
             return $e;
         }
 
+        $project = $this->insert($data);
+
+        $this->projectTaskService->insertBacklog($data['backlog'], $project);
         $this->projectEmployeeService->insert($team, $project);
 
         return $project->getId();

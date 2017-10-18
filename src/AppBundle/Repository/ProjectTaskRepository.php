@@ -10,4 +10,19 @@ namespace AppBundle\Repository;
  */
 class ProjectTaskRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $projectId
+     * @return array
+     */
+    public function findAllByProject($projectId)
+    {
+        $query = $this->createQueryBuilder('pt')
+            ->select('pt.title, pt.description, s.name as skill')
+            ->join('AppBundle:Skill', 's', 'WITH', 'pt.skill = s.id')
+            ->where('pt.project = :project')
+            ->setParameter('project', $projectId)
+            ->getQuery()->getArrayResult();
+
+        return $query;
+    }
 }

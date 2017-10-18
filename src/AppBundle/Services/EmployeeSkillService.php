@@ -8,13 +8,15 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 class EmployeeSkillService
 {
     private $repository;
+    private $projectTaskService;
 
     /**
      * @param EntityManager $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, ProjectTaskService $pts)
     {
         $this->repository = $em->getRepository('AppBundle:EmployeeSkill');
+        $this->projectTaskService = $pts;
     }
 
     /**
@@ -37,16 +39,15 @@ class EmployeeSkillService
     }
 
     /**
-     * @param $employeesSkills
      * @param $requirements
      * @param $quantity
      * @return array
      */
-    private function getTeamByLimit($employeesSkills, $requirements, $quantity)
+    private function getTeamByLimit($requirements, $quantity)
     {
         $team = [];
 
-        $employees = $this->normalizeEmployeesData($employeesSkills);
+        $employees = $this->normalizeEmployeesData($this->getAllBySkill($requirements));
 
         foreach ($employees as $key => $val) {
             foreach ($val['skills'] as $_key => $_val) {
@@ -113,14 +114,14 @@ class EmployeeSkillService
     }
 
     /**
-     * @param $requirements
+     * @param $backlog
      * @param $quantity
      * @return array
      */
-    public function getTeamByRequirements($requirements, $quantity)
+    public function getTeamByBacklog($backlog, $quantity)
     {
-        $employeesSkills = $this->getAllBySkill($requirements);
+        $requirements = $this->projectTaskService->getRequirementsByBacklog($backlog);
 
-        return $this->getTeamByLimit($employeesSkills, $requirements, $quantity);
+        return $this->getTeamByLimit($requirements, $quantity);
     }
 }

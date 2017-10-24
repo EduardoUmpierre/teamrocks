@@ -1,33 +1,29 @@
-
-var MaskBehavior = function (val) {
-    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-},
-maskOptions = {
-    onKeyPress: function(val, e, field, options) {
-        field.mask(MaskBehavior.apply({}, arguments), options);
-    }
-};
-
-
 $(document).ready( function () {
 
-    var nav = $('.navbar.navbar-default'),
-        $eq = $('.tr_eq'),
-        $btnMobile = $('.btn-nav');
+    var $eq = $('.tr_eq'),
+        $btnMobile = $('.open_menu'),
+        $openProjects = $('.open_projects');
+
+    $btnMobile.on('click', function () {
+        const   _this       = $(this),
+                _target     = $('nav.menu'),
+                _t          = $('aside.sidebar');
+
+        _this.children().toggleClass('fa-bars fa-times');
+        _target.delay(150).toggleClass('menu_opened');
+        _t.removeClass('menu_opened');
+    });
+
+    $openProjects.on('click', function () {
+        const _target = $('aside.sidebar');
+        _target.toggleClass('menu_opened');
+    });
 
     /* BEGIN: MENU MOBILE */
     $btnMobile.on( 'click', function () {
-       $('.menu_mobile').toggleClass('opened');
+        $('.menu_mobile').toggleClass('opened');
     });
     /* END: MENU MOBILE */
-
-    /* BEGIN: AFFIX */
-    nav.affix({
-       offset: {
-           top: 150
-       }
-    });
-    /* END: AFFIX */
 
     /* BEGIN: PARALLAX */
     $('header.tr_header_home').each(function(){
@@ -43,18 +39,6 @@ $(document).ready( function () {
         });
     });
     /* END: PARALLAX */
-
-    /* BEGIN: LABEL PARA INPUT */
-    var inputs = $('input, textarea');
-    inputs.blur(function () {
-        if ($(this).val()) {
-            $(this).addClass('used');
-        }
-        else {
-            $(this).removeClass('used');
-        }
-    });
-    /* END: LABEL PARA INPUT */
 
     /* BEGIN: EQUAL HEIGHT */
     var options = {

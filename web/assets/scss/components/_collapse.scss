@@ -1,0 +1,18 @@
+.func{
+  position: relative;
+  margin-bottom: $margin*3;
+
+  a{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 35px;
+    background-color: $light_gray;
+    z-index: 3;
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    color: $red;
+  }
+}

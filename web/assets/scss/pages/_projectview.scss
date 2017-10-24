@@ -1,0 +1,16 @@
+.project_view{
+
+  $height: 120px;
+
+  padding: {
+    top: $padding*3;
+  };
+
+
+  .project_view_header{
+    height: $height;
+    @include flexbox;
+    @include justify-content(flex-start);
+    @include align-items(center);
+  }
+}

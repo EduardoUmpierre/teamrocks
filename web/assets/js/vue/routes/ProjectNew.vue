@@ -1,79 +1,76 @@
 <template>
     <div>
-        <main class="tr_content_home">
+        <main class="project_view">
             <div class="container">
                 <h2>Novo projeto</h2>
 
                 <form v-on:submit.prevent="create">
-                    <div class="form-group">
+                    <div class="group">
                         <label for="title">Título</label>
-                        <input type="text" name="title" class="form-control" id="title" v-model="project.title">
+                        <input type="text" name="title" class="input" id="title" v-model="project.title">
                     </div>
 
-                    <div class="form-group">
+                    <div class="group">
                         <label for="description">Descrição</label>
-                        <textarea name="description" class="form-control" id="description"
+                        <textarea name="description" class="input" id="description"
                                   v-model="project.description"></textarea>
                     </div>
 
-                    <div class="form-group">
+                    <div class="group">
                         <label for="deadline">Prazo</label>
-                        <input type="text" name="deadline" class="form-control" id="deadline"
+                        <input type="text" name="deadline" class="input" id="deadline"
                                v-model="project.deadline">
                     </div>
 
-                    <div class="form-group">
+                    <div class="group">
                         <label for="manager">Gestor</label>
 
-                        <select id="manager" class="form-control" v-model="project.manager">
+                        <select id="manager" class="input" v-model="project.manager">
                             <option v-bind:value="manager.id" v-for="manager in managers">{{ manager.name }}</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="group">
                         <label for="quantity">Quantidade máxima de componentes no time</label>
-                        <input type="text" name="quantity" class="form-control" id="quantity"
+                        <input type="text" name="quantity" class="input" id="quantity"
                                v-model="project.quantity">
                     </div>
 
-                    <h3>Backlog
-                        <button class="btn btn-primary" type="button" v-on:click="addTask">
+                    <h3>
+                        Backlog
+                        <button class="button button_green button_side pull-right" type="button" v-on:click="addTask">
                             Adicionar item
                         </button>
                     </h3>
 
-                    <ol>
-                        <li v-for="(task, index) in project.backlog" class="row">
-                            <div class="form-group col-xs-3">
-                                <label>Título</label>
-                                <input type="text" class="form-control" v-model="task.title">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label>Descrição</label>
-                                <input type="text" class="form-control" v-model="task.description">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label>Competência necessária</label>
-
-                                <select class="form-control" v-model="task.skill">
-                                    <option v-bind:value="skill.id" v-for="skill in skills">{{ skill.name }}</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-xs-2">
-                                <label>Nível</label>
-                                <input type="text" class="form-control" v-model="task.level">
-                            </div>
-                            <div class="form-group col-xs-1">
-                                <a href="#" v-on:click="removeTask(index, $event)">
-                                    X
-                                </a>
-                            </div>
-                        </li>
-                    </ol>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Gerar equipe</button>
+                    <div class="func" v-for="(task, index) in project.backlog">
+                        <div class="group">
+                            <a href="#" v-on:click="removeTask(index, $event)">
+                                <i class="fa fa-times"></i>
+                            </a>
+                            <label>Título</label>
+                            <input type="text" class="input" v-model="task.title">
+                        </div>
+                        <div class="group">
+                            <label>Descrição</label>
+                            <input type="text" class="input" v-model="task.description">
+                        </div>
+                        <div class="group">
+                            <label>Competência necessária</label>
+                            <select class="input" v-model="task.skill">
+                                <option v-bind:value="skill.id" v-for="skill in skills">{{ skill.name }}</option>
+                            </select>
+                        </div>
+                        <div class="group">
+                            <label>Nível</label>
+                            <input type="text" class="input" v-model="task.level">
+                        </div>
                     </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        <button type="submit" class="button button_green center-block">Gerar equipe</button>
+                    </div>
+
                 </form>
             </div>
         </main>

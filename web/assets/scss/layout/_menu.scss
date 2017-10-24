@@ -1,0 +1,124 @@
+nav.menu{
+  position: fixed;
+  left: -$menu_width;
+  width: $menu_width;
+  top: 50px;
+  bottom: 0;
+  height: 100%;
+  background-color: $gray;
+  z-index: 9800;
+
+  @include box-shadow(0 0 0 transparent);
+  @include transition(all .35s ease);
+
+  ul{
+    list-style: none;
+    padding: {
+      top: $padding;
+      left: 0;
+      right: 0;
+      bottom: $padding;
+    }
+
+    li{
+      padding: $padding;
+      position: relative;
+      text-align: center;
+
+      a{
+        color: $light_gray;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.75px;
+      }
+
+      &:after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 15%;
+        right: 15%;
+        height: 1px;
+        background-color: transparentize($light_gray, .85)
+      }
+
+      &:last-of-type{
+        &:after{
+          content: none;
+        }
+      }
+    }
+  }
+
+  &.menu_opened{
+    left: 0;
+    @include box-shadow(0 0 15px transparentize($black, .15));
+  }
+}
+
+
+nav.main_menu{
+
+  $height: 50px;
+
+
+  height: $height;
+  background-color: $gray;
+  border: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9900;
+  padding: 0;
+  @include box-shadow(0 0 15px transparentize($black, .15));
+
+
+  .main_menu_logo{
+    height: $height;
+    width: $height;
+    float: left;
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+
+    img{
+      height: $height - 15px;
+    }
+  }
+
+
+  .main_menu_nav{
+    float: right;
+    margin: 0;
+    padding: 0;
+
+    >li{
+      height: $height;
+
+      float: left;
+      @include flexbox;
+      @include justify-content(center);
+      @include align-items(center);
+      max-width: 100px;
+      padding: 0;
+      margin: 0 15px;
+
+      p{
+        @include flexbox;
+        @include justify-content(flex-start);
+        @include align-items(center);
+        @include flex-flow(row wrap);
+        line-height: normal;
+        font-size: 12px;
+        color: $light_gray;
+        margin: 0;
+      }
+
+      a{
+        color: $light_gray;
+        text-decoration: none!important;
+      }
+    }
+  }
+}

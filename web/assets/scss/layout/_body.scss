@@ -1,5 +1,51 @@
 
 body{
-  font-family: $mada;
+  font-family: $roboto;
   font-size: 16px;
+}
+.tr_list{
+  list-style: none;
+  padding: 0;
+  >li{
+    font-size: rem(18);
+    font-weight: 500;
+
+    &:before{
+      content: '\00BB';
+      color: $green;
+      font-weight: 900;
+      margin-right: $margin/2;
+    }
+
+
+    ul{
+      >li{
+
+      }
+    }
+  }
+}
+
+h2{
+  color: $gray;
+  font-size: rem(18);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: {
+    top: $margin*3;
+    bottom: $margin*3;
+  }
+  position: relative;
+  display: inline-block;
+
+  &:after{
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+
+    height: 20%;
+    width: 40%;
+    background-color: $gray;
+  }
 }

@@ -2,9 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,900" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/lib/bootstrap.min.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.css') }}">
         {% endblock %}
@@ -13,21 +17,7 @@
     </head>
     <body>
         {% block header %}
-            <nav class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/#/">
-                            <img src="{{ asset('assets/images/team-rocks-logo.jpg') }}" alt="Team.Rocks">
-                        </a>
-                    </div>
 
-                    <div class="tr_offcanvas">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>Bem Vindo, <strong>TEAM.ROCKS</strong></li>
-                        </ul>
-                    </div><!-- end of offcanvas menu -->
-                </div><!-- end of /.container -->
-            </nav>
         {% endblock %}
 
         {% block body %}{% endblock %}

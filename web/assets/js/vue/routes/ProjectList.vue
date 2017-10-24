@@ -1,17 +1,15 @@
 <template>
     <div>
         <div v-if="project">
-            <main class="tr_content_home">
+            <main class="project_view">
                 <div class="container">
-                    <h2>Projeto</h2>
-
-                    <h3>{{ project.title }}</h3>
+                    <h2>Projeto: <strong>{{ project.title }}</strong></h2>
                     <p>{{ project.description }}</p>
-
-                    <h2>Equipe</h2>
+                    <hr>
+                    <h3>Equipe</h3>
                     <team-list v-bind:team="project.team"></team-list>
-
-                    <h2>Tasks</h2>
+                    <hr>
+                    <h3>Tasks</h3>
                     <task-list v-bind:tasks="project.tasks"></task-list>
                 </div>
             </main>
@@ -24,7 +22,7 @@
     import TaskList from '../components/TaskList.vue'
 
     export default {
-        name: 'project-view',
+        name: 'project-list',
         components: {
             'team-list': TeamList,
             'task-list': TaskList
@@ -35,9 +33,9 @@
             }
         },
         methods: {
-            getProjectData: function (id) {
+            getProjectData: function () {
                 this.$http
-                        .get('/api/v1/projects/' + id)
+                        .get('/api/v1/projects/')
                         .then(function (response) {
                             console.log(response.data);
                             this.project = response.data;

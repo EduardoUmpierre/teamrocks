@@ -7,7 +7,7 @@
 
             <ul>
                 <li v-for="skill in person.skills">
-                    {{ skill.name }} - {{ skill.level }}
+                    {{ skill.name }}
                 </li>
             </ul>
         </div>

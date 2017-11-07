@@ -44,7 +44,7 @@ class ProjectController extends Controller
     {
         $project = json_decode($request->getContent(), true);
 
-        $result = $projectService->create($project);
+        $result = $projectService->create($project['project'], $project['team']);
 
         if ($result instanceof Exception) {
             return new JsonResponse(['message' => $result->getMessage()], 400);

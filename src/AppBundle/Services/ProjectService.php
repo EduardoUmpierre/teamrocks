@@ -64,16 +64,11 @@ class ProjectService
 
     /**
      * @param $data
-     * @return \Exception|int|Exception
+     * @param $team
+     * @return int
      */
-    public function create($data)
+    public function create($data, $team)
     {
-        try {
-            $team = $this->employeeSkillService->getTeamByBacklog($data['backlog'], $data['quantity']);
-        } catch (Exception $e) {
-            return $e;
-        }
-
         $project = $this->insert($data);
 
         $this->projectTaskService->insertBacklog($data['backlog'], $project);

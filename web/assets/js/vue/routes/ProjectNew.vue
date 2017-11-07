@@ -4,7 +4,7 @@
             <div class="container">
                 <h2>Novo projeto</h2>
 
-                <form v-on:submit.prevent="create">
+                <form v-on:submit.prevent="generateTeam">
                     <div class="group">
                         <label for="title">Título</label>
                         <input type="text" name="title" class="input" id="title" v-model="project.title">
@@ -75,15 +75,37 @@
             </div>
         </main>
 
+        <modal v-if="showModal" @close="showModal=false">
+            <h3 slot="header">Time sugerido</h3>
+
+            <div slot="body">
+                <team-list v-bind:team="team"></team-list>
+            </div>
+
+            <div slot="footer">
+                <button class="modal-default-button" @click="createProject()">
+                    Finalizar
+                </button>
+            </div>
+        </modal>
+
         <notifications group="message" position="bottom right" />
     </div>
 </template>
 
 <script>
+    import Modal from '../components/Modal.vue'
+    import TeamList from '../components/TeamList.vue'
+
     export default {
         name: 'project-new',
+        components: {
+            'modal': Modal,
+            'team-list': TeamList
+        },
         data: function () {
             return {
+                showModal: false,
                 skills: [],
                 managers: [],
                 project: {
@@ -108,28 +130,38 @@
                         {
                             title: 'Exemplo',
                             description: 'O que deve ser feito',
-                            skill: 3,
-                            level: 2
-                        },
-                        {
-                            title: 'Exemplo',
-                            description: 'O que deve ser feito',
                             skill: 4,
-                            level: 2
-                        },
-                        {
-                            title: 'Exemplo',
-                            description: 'O que deve ser feito',
-                            skill: 5,
                             level: 2
                         }
                     ]
-                }
+                },
+                team: []
             }
         },
         methods: {
-            create: function () {
-                this.$http.post('/api/v1/projects', this.project, {headers: {'Content-Type': 'application/json'}})
+            generateTeam: function () {
+                this.$http.post('/api/v1/teams', {quantity: this.project.quantity, backlog: this.project.backlog}, {headers: {'Content-Type': 'application/json'}})
+                    .then(function (response) {
+                        console.log(response.data);
+
+                        if (response.status == 200 && response.data.team) {
+                            this.team = response.data.team;
+                            this.showModal = true;
+//                            this.$router.push({name: 'project_detail', params: {id: response.data.id}});
+                        }
+                    }, function (error) {
+                        console.log(error);
+
+                        this.$notify({
+                            group: 'message',
+                            title: 'Aviso',
+                            text: error.body.message,
+                            type: 'warn'
+                        });
+                    });
+            },
+            createProject: function() {
+                this.$http.post('/api/v1/projects', {team: this.team, project: this.project}, {headers: {'Content-Type': 'application/json'}})
                     .then(function (response) {
                         console.log(response.data);
 

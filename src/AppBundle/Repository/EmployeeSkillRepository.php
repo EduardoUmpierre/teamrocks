@@ -18,7 +18,7 @@ class EmployeeSkillRepository extends \Doctrine\ORM\EntityRepository
     public function getAllBySkill($skill, $level)
     {
         $query = $this->createQueryBuilder('es')
-            ->select('e.id, e.name, es.level')
+            ->select('e.id, e.name, es.level, s.name as skill')
             ->join('AppBundle:Skill', 's', 'WITH', 'es.skill = s.id')
             ->join('AppBundle:Employee', 'e', 'WITH', 'es.employee = e.id')
             ->where('s.id = :skill')

@@ -51,7 +51,7 @@ class EmployeeSkillService
 
         foreach ($employees as $key => $val) {
             foreach ($val['skills'] as $_key => $_val) {
-                if (isset($requirements[$_val])) {
+                if (isset($requirements[$_val['id']])) {
                     if ($this->verifyIfItsUnique($team, $val['id'])) {
                         $team[$val['id']] = [
                             'id' => $val['id'],
@@ -60,9 +60,12 @@ class EmployeeSkillService
                         ];
                     }
 
-                    $team[$val['id']]['skills'][$_val] = $requirements[$_val];
+                    $team[$val['id']]['skills'][$_val['id']] = [
+                        'level' => $requirements[$_val['id']],
+                        'name' => $_val['name']
+                    ];
 
-                    unset($requirements[$_val]);
+                    unset($requirements[$_val['id']]);
                 }
             }
 
@@ -92,7 +95,10 @@ class EmployeeSkillService
                     ];
                 }
 
-                array_push($employees[$_val['id']]['skills'], $key);
+                array_push($employees[$_val['id']]['skills'], [
+                    'id' => $key,
+                    'name' => $_val['skill']
+                ]);
             }
         }
 

@@ -17,7 +17,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     routes: [
-        {path: '/', component: Home},
+        {path: '/', name: 'home', component: Home},
         {path: '/projeto/novo', name: 'project_new', component: ProjectNew},
         {path: '/projeto/:id', name: 'project_detail', component: ProjectView},
         {path: '/projeto/listagem', name: 'project_list', component: ProjectList}

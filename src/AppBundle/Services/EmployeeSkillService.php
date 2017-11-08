@@ -74,6 +74,9 @@ class EmployeeSkillService
             }
         }
 
+        /**
+         * @todo Retornar as habilidades que impossibilitaram a criação do time
+         */
         throw new Exception('Impossível montar um time com os requisitos necessários');
     }
 

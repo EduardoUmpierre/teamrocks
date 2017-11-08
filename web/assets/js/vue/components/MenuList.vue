@@ -1,8 +1,11 @@
 <template>
-    <div>
+    <header>
         <nav class="main_menu">
             <div class="container">
-                <a class="main_menu_logo" href="#"><img src="assets/images/team-rocks-logo.jpg" alt="TEAM ROCKS"></a>
+                <router-link :to="{ name: 'home' }" class="main_menu_logo">
+                    <img src="/assets/images/team-rocks-logo.jpg" alt="TEAM ROCKS">
+                </router-link>
+
                 <ul class="main_menu_nav">
                     <li>
                         <p>Bem Vindo, <strong>TEAM ROCKS</strong></p>
@@ -41,7 +44,7 @@
                 </li>
             </ul>
         </aside>
-    </div>
+    </header>
 </template>
 
 

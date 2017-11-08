@@ -10,12 +10,12 @@
                             </li>
                             <li>
                                 <a href="https://symfony.com/" target="_blank">
-                                    <img src="assets/images/logos/symfony.svg" alt="Symfony">
+                                    <img src="/assets/images/logos/symfony.svg" alt="Symfony">
                                 </a>
                             </li>
                             <li>
                                 <a href="https://vuejs.org/" target="_blank">
-                                    <img src="assets/images/logos/vue.svg" alt="VUE.JS">
+                                    <img src="/assets/images/logos/vue.svg" alt="VUE.JS">
                                 </a>
                             </li>
                         </ul>

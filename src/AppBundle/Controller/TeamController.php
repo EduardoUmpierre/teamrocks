@@ -6,6 +6,7 @@ use AppBundle\Services\EmployeeSkillService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -32,8 +33,8 @@ class TeamController extends Controller
             $team = $employeeSkillService->getTeamByBacklog($data['backlog'], $data['quantity']);
 
             return new JsonResponse(['team' => $team]);
-        } catch (\Exception $e) {
-            return new JsonResponse(['message' => $e]);
+        } catch (Exception $e) {
+            return new JsonResponse(['message' => $e->getMessage()]);
         }
     }
 }

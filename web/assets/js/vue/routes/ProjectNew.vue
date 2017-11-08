@@ -86,6 +86,10 @@
                 <button class="modal-default-button" @click="createProject()">
                     Finalizar
                 </button>
+
+                <button class="modal-default-button" @click="showModal = false">
+                    Fechar
+                </button>
             </div>
         </modal>
 

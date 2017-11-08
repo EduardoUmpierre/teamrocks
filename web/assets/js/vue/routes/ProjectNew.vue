@@ -38,14 +38,14 @@
 
                     <h3>
                         Backlog
-                        <button class="button button_green button_side pull-right" type="button" v-on:click="addTask">
+                        <button class="button button_green button_side pull-right" type="button" @click="addTask">
                             Adicionar item
                         </button>
                     </h3>
 
                     <div class="func" v-for="(task, index) in project.backlog">
                         <div class="group">
-                            <a href="#" v-on:click="removeTask(index, $event)">
+                            <a href="#" @click="removeTask(index, $event)">
                                 <i class="fa fa-times"></i>
                             </a>
                             <label>Título</label>
@@ -83,17 +83,17 @@
             </div>
 
             <div slot="footer">
-                <button class="modal-default-button" @click="createProject()">
+                <button class="modal-default-button btn btn-primary" @click="createProject()">
                     Finalizar
                 </button>
 
-                <button class="modal-default-button" @click="showModal = false">
+                <button class="modal-default-button btn btn-default" @click="showModal = false">
                     Fechar
                 </button>
             </div>
         </modal>
 
-        <notifications group="message" position="bottom right" />
+        <notifications group="message" position="bottom right"/>
     </div>
 </template>
 
@@ -144,53 +144,48 @@
         },
         methods: {
             generateTeam: function () {
-                this.$http.post('/api/v1/teams', {quantity: this.project.quantity, backlog: this.project.backlog}, {headers: {'Content-Type': 'application/json'}})
-                    .then(function (response) {
-                        console.log(response.data);
+                this.$http.post('/api/v1/teams', {
+                    quantity: this.project.quantity,
+                    backlog: this.project.backlog
+                }, {headers: {'Content-Type': 'application/json'}})
+                        .then(function (response) {
+                            console.log('Teams', response.data);
 
-                        if (response.status == 200 && response.data.team) {
-                            this.team = response.data.team;
-                            this.showModal = true;
-//                            this.$router.push({name: 'project_detail', params: {id: response.data.id}});
-                        }
-                    }, function (error) {
-                        console.log(error);
-
-                        this.$notify({
-                            group: 'message',
-                            title: 'Aviso',
-                            text: error.body.message,
-                            type: 'warn'
+                            if (response.status == 200 && response.data.team) {
+                                this.team = response.data.team;
+                                this.showModal = true;
+                            } else {
+                                this.showError(response.data.message);
+                            }
+                        }, function (error) {
+                            this.showError(error.message);
                         });
-                    });
             },
-            createProject: function() {
-                this.$http.post('/api/v1/projects', {team: this.team, project: this.project}, {headers: {'Content-Type': 'application/json'}})
-                    .then(function (response) {
-                        console.log(response.data);
+            createProject: function () {
+                this.$http.post('/api/v1/projects', {
+                    team: this.team,
+                    project: this.project
+                }, {headers: {'Content-Type': 'application/json'}})
+                        .then(function (response) {
+                            console.log(response.data);
 
-                        if (response.status == 201 && response.data.id) {
-                            this.$router.push({name: 'project_detail', params: {id: response.data.id}});
-                        }
-                    }, function (error) {
-                        console.log(error);
-
-                        this.$notify({
-                            group: 'message',
-                            title: 'Aviso',
-                            text: error.body.message,
-                            type: 'warn'
+                            if (response.status == 201 && response.data.id) {
+                                this.$router.push({name: 'project_detail', params: {id: response.data.id}});
+                            } else {
+                                this.showError(response.data.message);
+                            }
+                        }, function (error) {
+                            this.showError(error.message);
                         });
-                    });
             },
             getSkills: function () {
                 this.$http.get('/api/v1/skills')
-                    .then(function (response) {
-                        console.log(response.data);
-                        this.skills = response.data;
-                    }, function (error) {
-                        console.log(error);
-                    });
+                        .then(function (response) {
+                            console.log(response.data);
+                            this.skills = response.data;
+                        }, function (error) {
+                            console.log(error);
+                        });
             },
             getManagers: function () {
                 this.$http.get('/api/v1/managers')
@@ -214,6 +209,9 @@
                     event.preventDefault();
 
                 this.project.backlog.splice(id, 1);
+            },
+            showError: function (message) {
+                this.$notify({group: 'message', title: 'Aviso', text: message, type: 'warn'});
             }
         },
         mounted: function () {

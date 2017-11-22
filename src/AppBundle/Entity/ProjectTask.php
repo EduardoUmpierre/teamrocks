@@ -43,6 +43,12 @@ class ProjectTask
     private $project;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Employee")
+     * @ORM\JoinColumn(name="id_employees", referencedColumnName="id")
+     */
+    private $employee;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Skill")
      * @ORM\JoinColumn(name="id_skills", referencedColumnName="id")
      */
@@ -125,6 +131,22 @@ class ProjectTask
     public function setProject($project)
     {
         $this->project = $project;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmployee()
+    {
+        return $this->employee;
+    }
+
+    /**
+     * @param mixed $employee
+     */
+    public function setEmployee($employee)
+    {
+        $this->employee = $employee;
     }
 
     /**

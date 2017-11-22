@@ -17,8 +17,9 @@ class ProjectTaskRepository extends \Doctrine\ORM\EntityRepository
     public function findAllByProject($projectId)
     {
         $query = $this->createQueryBuilder('pt')
-            ->select('pt.title, pt.description, s.name as skill')
+            ->select('pt.title, pt.description, s.name as skill, e.id as employee_id, e.name as employee_name')
             ->join('AppBundle:Skill', 's', 'WITH', 'pt.skill = s.id')
+            ->join('AppBundle:Employee', 'e', 'WITH', 'pt.employee = e.id')
             ->where('pt.project = :project')
             ->setParameter('project', $projectId)
             ->getQuery()->getArrayResult();

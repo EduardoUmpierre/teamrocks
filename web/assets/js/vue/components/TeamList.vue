@@ -3,6 +3,9 @@
         <div
                 class="col-xs-12 col-sm-4 tr_eq"
                 v-for="person in team">
+
+            <img src="http://www.placehold.it/100x50">
+
             <h3>{{ person.name }}</h3>
 
             <ul>

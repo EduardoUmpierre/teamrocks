@@ -10,17 +10,20 @@ class ProjectTaskService
 {
     private $em;
     private $repository;
+    private $skillService;
+    private $employeeService;
 
     /**
      * @param EntityManager $em
      * @param ManagerService $ms
      * @param SkillService $ss
      */
-    public function __construct(EntityManager $em, ManagerService $ms, SkillService $ss)
+    public function __construct(EntityManager $em, ManagerService $ms, SkillService $ss, EmployeeService $es)
     {
         $this->em = $em;
         $this->repository = $this->em->getRepository('AppBundle:ProjectTask');
         $this->skillService = $ss;
+        $this->employeeService = $es;
     }
 
     /**
@@ -45,12 +48,17 @@ class ProjectTaskService
 
     /**
      * @param $backlog
+     * @param $team
      * @param Project $project
      */
-    public function insertBacklog($backlog, Project $project)
+    public function insertBacklog($backlog, $team, Project $project)
     {
         foreach ($backlog as $key => $val) {
-            $this->insert($project, $val);
+            foreach ($team as $employee) {
+                if (array_key_exists($val['skill'], $employee['skills'])) {
+                    $this->insert($project, $employee['id'], $val);
+                }
+            }
         }
     }
 
@@ -65,9 +73,10 @@ class ProjectTaskService
 
     /**
      * @param $project
+     * @param $employee
      * @param $data
      */
-    private function insert(Project $project, $data)
+    private function insert(Project $project, $employee, $data)
     {
         $task = new ProjectTask();
         $task->setTitle($data['title']);
@@ -75,6 +84,7 @@ class ProjectTaskService
         $task->setLevel($data['level']);
         $task->setSkill($this->skillService->findOneById($data['skill']));
         $task->setProject($project);
+        $task->setEmployee($this->employeeService->findOneById($employee));
 
         $this->em->persist($task);
         $this->em->flush();

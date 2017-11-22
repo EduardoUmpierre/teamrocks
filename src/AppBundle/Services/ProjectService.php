@@ -71,7 +71,7 @@ class ProjectService
     {
         $project = $this->insert($data);
 
-        $this->projectTaskService->insertBacklog($data['backlog'], $project);
+        $this->projectTaskService->insertBacklog($data['backlog'], $team, $project);
         $this->projectEmployeeService->insert($team, $project);
 
         return $project->getId();

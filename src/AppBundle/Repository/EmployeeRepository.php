@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class EmployeeRepository extends \Doctrine\ORM\EntityRepository
 {
+	/**
+     * @return array
+     */
+    public function findAll()
+    {
+        $query = $this->createQueryBuilder('e')
+            ->select('e.id, e.name');
+
+        return $query->getQuery()->getArrayResult();
+    }
 }

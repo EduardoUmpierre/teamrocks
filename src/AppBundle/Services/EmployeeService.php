@@ -17,6 +17,14 @@ class EmployeeService
     }
 
     /**
+     * @return null|object
+     */
+    public function findAll()
+    {
+        return $this->repository->findAll();
+    }
+
+    /**
      * @param $id
      * @return null|object
      */

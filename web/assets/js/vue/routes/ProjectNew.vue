@@ -6,6 +6,9 @@
                     <h2>Novo projeto</h2>
 
                     <form v-on:submit.prevent="generateTeam">
+                        <!-- Basic informations -->
+                        <h3>Informações básicas</h3>
+
                         <div class="form-group">
                             <label for="title">Título</label>
                             <input type="text" name="title" class="form-control" id="title" v-model="project.title">
@@ -19,69 +22,82 @@
                                       v-model="project.description"></textarea>
                         </div>
 
-                        <div class="form-group">
-                            <label for="deadline">Prazo</label>
-                            <input type="text" name="deadline" class="form-control" id="deadline"
-                                   v-model="project.deadline">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="manager">Gestor</label>
-
-                            <select id="manager" class="form-control" v-model="project.manager">
-                                <option v-bind:value="manager.id" v-for="manager in managers">{{ manager.name }}</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="quantity">Quantidade máxima de componentes no time</label>
-                            <input type="text" name="quantity" class="form-control" id="quantity"
-                                   v-model="project.quantity">
-                        </div>
-
-                        <h3>
-                            Backlog
-                            <button class="button button_green button_side pull-right" type="button" @click="addTask">
-                                Adicionar item
-                            </button>
-                        </h3>
-
-                        <div class="row func" v-for="(task, index) in project.backlog">
-                            <div class="col-xs-3">
-                                <div class="form-group">
-                                    <a href="#" @click="removeTask(index, $event)">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                    <label>Título</label>
-                                    <input type="text" class="form-control" v-model="task.title">
-                                </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label for="deadline">Prazo</label>
+                                <input type="text" name="deadline" class="form-control" id="deadline"
+                                       v-model="project.deadline">
                             </div>
 
-                            <div class="col-xs-3">
+                            <div class="col-xs-4">
                                 <div class="form-group">
-                                    <label>Descrição</label>
-                                    <input type="text" class="form-control" v-model="task.description">
-                                </div>
-                            </div>
+                                    <label for="manager">Gestor</label>
 
-                            <div class="col-xs-3">
-                                <div class="form-group">
-                                    <label>Competência necessária</label>
-                                    <select class="form-control" v-model="task.skill">
-                                        <option v-bind:value="skill.id" v-for="skill in skills">{{ skill.name }}</option>
+                                    <select id="manager" class="form-control" v-model="project.manager">
+                                        <option v-bind:value="manager.id" v-for="manager in managers">{{ manager.name }}</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-xs-3">
+                            <div class="col-xs-4">
                                 <div class="form-group">
-                                    <label>Nível</label>
-                                    <input type="text" class="form-control" v-model="task.level">
+                                    <label for="quantity">Quantidade máxima de componentes no time</label>
+                                    <input type="text" name="quantity" class="form-control" id="quantity"
+                                           v-model="project.quantity">
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="button button_green center-block">Gerar equipe</button>
+                        <!-- Backlog-->
+                        <h3 class="aside-button">
+                            Backlog
+                            <button class="button blue small pull-right" type="button" @click="addTask">
+                                Adicionar item
+                            </button>
+                        </h3>
+
+                        <div class="backlog-list" v-for="(task, index) in project.backlog">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <div class="form-group">
+                                        <label>Título</label>
+                                        <input type="text" class="form-control" v-model="task.title">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <div class="form-group">
+                                        <label>Descrição</label>
+                                        <input type="text" class="form-control" v-model="task.description">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <div class="form-group">
+                                        <label>Competência necessária</label>
+                                        <select class="form-control" v-model="task.skill">
+                                            <option v-bind:value="skill.id" v-for="skill in skills">{{ skill.name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-2">
+                                    <div class="form-group">
+                                        <label>Nível</label>
+                                        <input type="text" class="form-control" v-model="task.level">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-1">
+                                    <a href="#" @click="removeTask(index, $event)">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <router-link :to="{ name: 'home' }" class="button">Voltar</router-link>
+                        <button type="submit" class="button green">Gerar equipe</button>
                     </form>
                 </div>
             </div>
@@ -95,13 +111,8 @@
             </div>
 
             <div slot="footer">
-                <button class="modal-default-button btn btn-primary" @click="createProject()">
-                    Finalizar
-                </button>
-
-                <button class="modal-default-button btn btn-default" @click="showModal = false">
-                    Fechar
-                </button>
+                <button class="button grey" @click="showModal = false">Fechar</button>
+                <button class="button green" @click="createProject()">Finalizar</button>
             </div>
         </modal>
 
@@ -109,14 +120,43 @@
     </main>
 </template>
 
+<style lang="scss">
+    @import '../../../scss/components/modal';
+</style>
+
 <style lang="scss" scoped>
     @import '../../../scss/helpers/flexbox';
+    @import '../../../scss/helpers/mixins';
     @import '../../../scss/components/buttons';
+    @import '../../../scss/components/list';
+    @import '../../../scss/components/inputs';
 
-    .func {
-        border: 1px solid #CCC;
+    .backlog-list {
+        border-bottom: 1px solid #cfd8dc;
         margin-bottom: 2rem;
-        padding: 2rem;
+        padding-bottom: 2rem;
+
+        > .row {
+            @include align-items(center);
+            @include flexbox();
+
+            > .col-xs-1 > a {
+                color: #ffcdd2;
+                display: block;
+                font-size: 2rem;
+                text-align: center;
+                @include transition(color 300ms ease);
+
+                &:focus,
+                &:hover {
+                    color: #e53935;
+                }
+            }
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
     }
 </style>
 

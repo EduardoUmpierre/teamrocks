@@ -1,41 +1,40 @@
-.button{
-  display: inline-block;
-  padding: 0;
-  margin-bottom: 0;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  @include user-select;
-  @include box-shadow(none);
-  text-decoration: none!important;
+@import "../helpers/mixins";
+@import "../helpers/variables";
 
-  font-size: rem(15);
-  font-weight: 600;
-  letter-spacing: .75px;
-  text-transform: uppercase;
+.button {
+    border-radius: 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .75px;
+    line-height: 1em;
+    margin-bottom: 0;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    @include transition(background-color .3s ease);
+    @include user-select;
 
-
-  &.button_green{
-    height: 40px;
-    width: 150px;
-    @include flexbox;
-    @include justify-content(center);
-    @include align-items(center);
-    margin: 0 auto;
-    background-color: $green;
-    color: $white;
-
-    @include transition(all .3s ease);
-
-    &:focus,
-    &:hover{
-      background-color: $green - 20;
+    & + & {
+        margin-left: 2rem;
     }
-  }
+
+    &.green {
+        background-color: $green;
+        border: 1px solid $green;
+        color: #252a34;
+
+        &:focus,
+        &:hover {
+            background-color: $green - 20;
+        }
+    }
+
+    &.transparent {
+        border: 1px solid #FFF;
+        color: #FFF;
+    }
 }

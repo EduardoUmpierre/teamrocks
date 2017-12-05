@@ -1,32 +1,81 @@
 <template>
-    <div>
-        <header class="header_home" style="background-image: url('assets/images/d63b8b7f1ff71a1fec8d4059a034f08c.jpg');" data-speed="-6">
-            <div class="header_overlay">
-                <div class="container">
-                    <h4>Dê os primeiros passos</h4>
-                    <h1>
-                        Monte seu projeto e crie seu time dos sonhos!
-                    </h1>
+    <main>
+        <section id="home-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="subtitle">Dê os primeiros passos</div>
+                        <div class="title">Monte seu projeto e crie seu time dos sonhos!</div>
 
-                    <router-link
-                            :to="{ name: 'project_new' }"
-                            class="button button_green">
-                        Novo projeto
-                    </router-link>
+                        <router-link
+                                :to="{ name: 'home' }"
+                                class="button transparent">
+                            Listar projetos
+                        </router-link>
+
+                        <router-link
+                                :to="{ name: 'project_new' }"
+                                class="button green">
+                            Novo projeto
+                        </router-link>
+                    </div>
                 </div>
             </div>
-        </header>
-        <main class="tr_content_home">
-            <div class="container">
-                <h2>Projetos criados</h2>
-                <project-list></project-list>
+        </section>
 
-                <h2>Funcionários</h2>
-                <team-list v-bind:team="employees"></team-list>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Projetos criados</h2>
+                        <project-list></project-list>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Funcionários</h2>
+                        <team-list v-bind:team="employees"></team-list>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
+        </section>
+    </main>
 </template>
+
+<style lang="scss" scoped>
+    @import '../../../scss/helpers/flexbox';
+    @import '../../../scss/components/buttons';
+    @import '../../../scss/components/list';
+
+    #home-header {
+        background: #252a34 url(../../../../assets/images/gorilao.png) center center fixed no-repeat;
+        color: #FFF;
+        text-align: center;
+
+        .row {
+            @include align-items(center);
+            @include flexbox;
+            height: 100vh;
+            min-height: 320px;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            font-size: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .title,
+        .subtitle {
+            line-height: 1em;
+        }
+    }
+</style>
 
 <script>
     import ProjectList from '../components/ProjectList.vue'

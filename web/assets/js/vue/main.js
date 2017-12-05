@@ -8,7 +8,7 @@ import ProjectView from './routes/ProjectView.vue'
 import ProjectNew from './routes/ProjectNew.vue'
 import ProjectList from './routes/ProjectList.vue'
 
-import MenuList from './components/MenuList.vue'
+import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 
 Vue.use(Notifications);
@@ -28,7 +28,7 @@ const router = new VueRouter({
 const app = new Vue({
     router,
     components : {
-        'menu-list' : MenuList,
+        'header-view' : Header,
         'footer-view' : Footer
     }
 }).$mount('#app');

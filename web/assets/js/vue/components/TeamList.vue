@@ -1,21 +1,23 @@
 <template>
-    <div class="row">
-        <div
-                class="col-xs-12 col-sm-4 tr_eq"
-                v-for="person in team">
+    <div class="row item-list">
+        <div class="col-xs-12 col-sm-4 col-lg-3"
+             v-for="person in team">
+            <router-link :to="{ name: 'home'}">
+                <h3>{{ person.name }}</h3>
 
-            <img src="http://www.placehold.it/100x50">
-
-            <h3>{{ person.name }}</h3>
-
-            <ul>
-                <li v-for="skill in person.skills">
-                    {{ skill.name }}
-                </li>
-            </ul>
+                <ul>
+                    <li v-for="skill in person.skills">
+                        {{ skill.name }}
+                    </li>
+                </ul>
+            </router-link>
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+    @import '../../../scss/components/list';
+</style>
 
 <script>
     export default {

@@ -32,6 +32,17 @@
     @import '../../../scss/helpers/mixins';
     @import '../../../scss/components/buttons';
     @import '../../../scss/components/list';
+
+    h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem;
+    }
+
+    p {
+        color: rgba(37, 42, 52, 0.65);
+        margin: 0;
+    }
 </style>
 
 <script>

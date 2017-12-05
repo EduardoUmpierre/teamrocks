@@ -26,10 +26,14 @@ module.exports = {
             },
             {
                 test: /\.scss?$/,
-                loaders: ['style-loader', 'css-loader', 'sass-loader']},
+                include: [
+                    path.resolve(__dirname, './web/assets/scss/main.scss')
+                ],
+                loaders: ['style-loader', 'css-loader', 'sass-loader']
+            },
             {
                 test: /\.css?$/,
-                loaders: ['style-loader', 'css-loader', 'sass-loader']
+                loader: 'style!css!sass'
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,

@@ -15,6 +15,16 @@
     </header>
 </template>
 
+<style lang="scss">
+    #app > main {
+        padding-top: 7rem;
+        min-height: 100vh;
+        min-height: -webkit-calc(100vh - 306px);
+        min-height:    -moz-calc(100vh - 306px);
+        min-height:         calc(100vh - 306px);
+    }
+</style>
+
 <style lang="scss" scoped>
     @import '../../../scss/helpers/flexbox';
 

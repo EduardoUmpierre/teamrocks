@@ -50,30 +50,30 @@
     #home-header {
         background: #252a34 url(../../../../assets/images/gorilao.png) center center fixed no-repeat;
         color: #FFF;
+        margin-top: -7rem;
         text-align: center;
 
-    .row {
-    @include align-items(center);
-    @include flexbox;
-        height: 100vh;
-        min-height: 320px;
-    }
+        .row {
+            @include align-items(center);
+            @include flexbox;
+            height: 100vh;
+            min-height: 320px;
+        }
 
-    .subtitle {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
+        .subtitle {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
 
-    .title {
-        font-size: 4rem;
-        margin-bottom: 4rem;
-    }
+        .title {
+            font-size: 4rem;
+            margin-bottom: 4rem;
+        }
 
-    .title,
-    .subtitle {
-        line-height: 1em;
-    }
-
+        .title,
+        .subtitle {
+            line-height: 1em;
+        }
     }
 </style>
 

@@ -5,7 +5,7 @@ module.exports = {
     entry: './web/assets/js/vue/main.js',
     output: {
         path: path.resolve(__dirname, './web/assets/dist'),
-        publicPath: '/dist/',
+        publicPath: '/assets/dist/',
         filename: 'build.js'
     },
     watch: true,
@@ -15,8 +15,7 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
-                    loaders: {
-                    }
+                    loaders: {}
                     // other vue-loader options go here
                 }
             },
@@ -24,6 +23,13 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.scss?$/,
+                loaders: ['style-loader', 'css-loader', 'sass-loader']},
+            {
+                test: /\.css?$/,
+                loaders: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,

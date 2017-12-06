@@ -16,7 +16,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function findAll()
     {
         $query = $this->createQueryBuilder('p')
-            ->select('p.id, p.title, p.description, p.createdAt')
+            ->select('p.id, p.title, p.description, p.deadline, p.createdAt')
             ->getQuery()->getArrayResult();
 
         return $query;
@@ -30,7 +30,8 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function findOneArrayById($id)
     {
         $query = $this->createQueryBuilder('p')
-            ->select('p.id, p.title, p.description')
+            ->select('p.id, p.title, p.description, p.deadline, p.createdAt, m.name AS manager')
+            ->join('AppBundle:Manager', 'm', 'WITH', 'm.id = p.manager')
             ->where('p.id = :id')
             ->setParameter('id', $id)
             ->setMaxResults(1)

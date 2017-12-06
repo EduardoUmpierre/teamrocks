@@ -2,6 +2,7 @@
 
 namespace AppBundle\Services;
 
+use AppBundle\Entity\Employee;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\ProjectTask;
 use Doctrine\ORM\EntityManager;
@@ -11,19 +12,17 @@ class ProjectTaskService
     private $em;
     private $repository;
     private $skillService;
-    private $employeeService;
 
     /**
      * @param EntityManager $em
      * @param ManagerService $ms
      * @param SkillService $ss
      */
-    public function __construct(EntityManager $em, ManagerService $ms, SkillService $ss, EmployeeService $es)
+    public function __construct(EntityManager $em, ManagerService $ms, SkillService $ss)
     {
         $this->em = $em;
         $this->repository = $this->em->getRepository('AppBundle:ProjectTask');
         $this->skillService = $ss;
-        $this->employeeService = $es;
     }
 
     /**
@@ -56,7 +55,7 @@ class ProjectTaskService
         foreach ($backlog as $key => $val) {
             foreach ($team as $employee) {
                 if (array_key_exists($val['skill'], $employee['skills'])) {
-                    $this->insert($project, $employee['id'], $val);
+                    $this->insert($project, $employee['employee'], $val);
                 }
             }
         }
@@ -72,11 +71,11 @@ class ProjectTaskService
     }
 
     /**
-     * @param $project
-     * @param $employee
+     * @param Project $project
+     * @param Employee $employee
      * @param $data
      */
-    private function insert(Project $project, $employee, $data)
+    private function insert(Project $project, Employee $employee, $data)
     {
         $task = new ProjectTask();
         $task->setTitle($data['title']);
@@ -84,7 +83,7 @@ class ProjectTaskService
         $task->setLevel($data['level']);
         $task->setSkill($this->skillService->findOneById($data['skill']));
         $task->setProject($project);
-        $task->setEmployee($this->employeeService->findOneById($employee));
+        $task->setEmployee($employee);
 
         $this->em->persist($task);
         $this->em->flush();

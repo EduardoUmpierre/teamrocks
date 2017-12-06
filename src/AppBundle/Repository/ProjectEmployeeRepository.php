@@ -25,4 +25,25 @@ class ProjectEmployeeRepository extends \Doctrine\ORM\EntityRepository
 
         return $query;
     }
+
+    /**
+     * @param $employeeId
+     * @return array
+     */
+    public function findEmployeeStatus($employeeId)
+    {
+        $now = new \DateTime('now');
+        $now->setTime(0, 0, 0);
+
+        $query = $this->createQueryBuilder('pe')
+            ->select('p.id')
+            ->join('AppBundle:Project', 'p', 'WITH', 'p.id = pe.project')
+            ->where('pe.employee = :employeeId')
+            ->andWhere('p.deadline > :now')
+            ->setParameters(['employeeId' => $employeeId, 'now' => $now])
+            ->groupBy('pe.employee')
+            ->getQuery()->getOneOrNullResult();
+
+        return $query ? false : true;
+    }
 }

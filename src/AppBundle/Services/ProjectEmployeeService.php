@@ -10,17 +10,15 @@ class ProjectEmployeeService
 {
     private $em;
     private $repository;
-    private $employeeService;
     private $projectEmployeeSkillService;
 
     /**
      * ProjectEmployeeService constructor.
      */
-    public function __construct(EntityManager $em, EmployeeService $es, ProjectEmployeeSkillService $pess)
+    public function __construct(EntityManager $em, ProjectEmployeeSkillService $pess)
     {
         $this->em = $em;
         $this->repository = $this->em->getRepository('AppBundle:ProjectEmployee');
-        $this->employeeService = $es;
         $this->projectEmployeeSkillService = $pess;
     }
 
@@ -32,7 +30,7 @@ class ProjectEmployeeService
     {
         foreach ($team as $key => $val) {
             $projectEmployee = new ProjectEmployee();
-            $projectEmployee->setEmployee($this->employeeService->findOneById($val['id']));
+            $projectEmployee->setEmployee($val['employee']);
             $projectEmployee->setProject($project);
             $projectEmployee->setLevel(0);
 
@@ -58,5 +56,14 @@ class ProjectEmployeeService
         }
 
         return $team;
+    }
+
+    /**
+     * @param $employeeId
+     * @return array
+     */
+    public function findEmployeeStatus($employeeId)
+    {
+        return $this->repository->findEmployeeStatus($employeeId);
     }
 }

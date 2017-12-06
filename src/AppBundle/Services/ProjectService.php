@@ -22,7 +22,7 @@ class ProjectService
      * @param ProjectEmployeeService $pes
      * @param ProjectTaskService $pts
      */
-    public function __construct(EntityManager $em, ManagerService $ms, EmployeeSkillService $ess, ProjectEmployeeService $pes, ProjectTaskService $pts)
+    public function __construct(EntityManager $em, ManagerService $ms, EmployeeService $es, EmployeeSkillService $ess, ProjectEmployeeService $pes, ProjectTaskService $pts)
     {
         $this->em = $em;
         $this->repository = $this->em->getRepository('AppBundle:Project');
@@ -30,6 +30,7 @@ class ProjectService
         $this->employeeSkillService = $ess;
         $this->projectEmployeeService = $pes;
         $this->projectTaskService = $pts;
+        $this->employeeService = $es;
     }
 
     /**
@@ -70,6 +71,10 @@ class ProjectService
     public function create($data, $team)
     {
         $project = $this->insert($data);
+
+        foreach ($team as $key => $val) {
+            $team[$key]['employee'] = $this->employeeService->findOneById($val['id']);
+        }
 
         $this->projectTaskService->insertBacklog($data['backlog'], $team, $project);
         $this->projectEmployeeService->insert($team, $project);

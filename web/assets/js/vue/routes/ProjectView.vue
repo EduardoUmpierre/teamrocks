@@ -1,29 +1,60 @@
 <template>
-    <main>
-        <div class="container" v-if="project">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h2>Projeto</h2>
+    <main v-if="project">
+        <section id="project">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Projeto</h2>
+                    </div>
+                </div>
 
-                    <h1>{{ project.title }}</h1>
-                    <p>{{ project.description }}</p>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p id="project-title">{{ project.title }}</p>
+                        <p id="project-description">{{ project.description }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        <h3>Data de criação</h3>
+                        <p><formatter v-bind:value="project.createdAt.date" fn="date"></formatter></p>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <h3>Prazo de entrega</h3>
+                        <p><formatter v-bind:value="project.deadline.date" fn="date"></formatter></p>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <h3>Gestor</h3>
+                        <p>{{ project.manager }}</p>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <h2>Equipe</h2>
-                    <team-list v-bind:team="project.team"></team-list>
+        <section id="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Equipe</h2>
+                        <team-list v-bind:team="project.team"></team-list>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <h2>Tasks</h2>
-                    <task-list v-bind:tasks="project.tasks"></task-list>
+        <section id="tasks">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Tasks</h2>
+                        <task-list v-bind:tasks="project.tasks"></task-list>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 </template>
 
@@ -33,27 +64,29 @@
     @import '../../../scss/components/buttons';
     @import '../../../scss/components/list';
 
-    h1 {
-        font-size: 4rem;
-        font-weight: 700;
-        margin: 0 0 0.5rem;
+    p {
+        color: #79849a;
+        margin-bottom: 0;
     }
 
-    p {
-        color: rgba(37, 42, 52, 0.65);
-        margin: 0;
+    #project-title {
+        color: #263238;
+        font-size: 3rem;
+        font-weight: 700;
     }
 </style>
 
 <script>
     import TeamList from '../components/TeamList.vue'
     import TaskList from '../components/TaskList.vue'
+    import Formatter from '../helpers/Formatter.vue'
 
     export default {
         name: 'project-view',
         components: {
             'team-list': TeamList,
-            'task-list': TaskList
+            'task-list': TaskList,
+            'formatter': Formatter
         },
         data: function () {
             return {

@@ -107,7 +107,7 @@
             <h3 slot="header">Time sugerido</h3>
 
             <div slot="body">
-                <team-list v-bind:team="team"></team-list>
+                <team-list v-bind:team="team" v-bind:size="4"></team-list>
             </div>
 
             <div slot="footer">

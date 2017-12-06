@@ -1,11 +1,15 @@
 <template>
     <div class="row item-list">
-        <div class="col-xs-12 col-sm-4 col-lg-3"
-             v-for="person in team">
+        <div v-bind:class="'col-md-' + size" class="col-xs-12 col-sm-4"
+             v-for="person in sortedTeam">
             <router-link :to="{ name: 'home'}" class="inline transparent">
-                <img src="http://www.placehold.it/50" class="img-responsive">
+                <div class="image-container">
+                    <img src="http://www.placehold.it/50" class="img-responsive">
 
-                <div>
+                    <span class="status" v-if="person.hasOwnProperty('available')" v-bind:class="person.available ? 'green' : 'red'"></span>
+                </div>
+
+                <div class="content-container">
                     <h3>{{ person.name }}</h3>
 
                     <ul>
@@ -24,8 +28,23 @@
 </style>
 
 <script>
+    import { orderBy, isEmpty } from 'lodash';
+
     export default {
         name: 'team-list',
-        props: ['team']
+        props: {
+            'team': {
+                type: Array
+            },
+            'size': {
+                type: Number,
+                default: 3
+            }
+        },
+        computed: {
+            sortedTeam: function() {
+                return _.orderBy(this.team, 'available', 'desc');
+            }
+        }
     }
 </script>

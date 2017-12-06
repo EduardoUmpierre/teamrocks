@@ -8,7 +8,7 @@
                         <div class="title">Monte seu projeto e crie seu time dos sonhos!</div>
 
                         <a href="#projetos"
-                           class="button transparent">
+                           class="button transparent white">
                             Listar projetos
                         </a>
 

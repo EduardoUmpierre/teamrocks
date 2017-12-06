@@ -46,7 +46,14 @@
 
     &.transparent {
         border: 1px solid #FFF;
-        color: #FFF;
+
+        &.black {
+            color: #333;
+        }
+
+        &.white {
+            color: #FFF;
+        }
     }
 
     &.small {

@@ -96,7 +96,7 @@
                             </div>
                         </div>
 
-                        <router-link :to="{ name: 'home' }" class="button">Voltar</router-link>
+                        <router-link :to="{ name: 'home' }" class="button transparent black">Voltar</router-link>
                         <button type="submit" class="button green">Gerar equipe</button>
                     </form>
                 </div>
@@ -111,7 +111,7 @@
             </div>
 
             <div slot="footer">
-                <button class="button grey" @click="showModal = false">Fechar</button>
+                <button class="button transparent black" @click="showModal = false">Fechar</button>
                 <button class="button green" @click="createProject()">Finalizar</button>
             </div>
         </modal>
@@ -178,7 +178,7 @@
                 project: {
                     title: 'Título do projeto',
                     description: 'Descrição do projeto',
-                    deadline: '01/12/1996',
+                    deadline: '01/02/2018',
                     manager: 1,
                     quantity: 2,
                     backlog: [

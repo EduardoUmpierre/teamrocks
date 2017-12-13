@@ -16,7 +16,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function findAll()
     {
         $query = $this->createQueryBuilder('p')
-            ->select('p.id, p.title, p.description, p.deadline, p.createdAt')
+            ->select('p.id, p.title, p.description, p.deadline, p.createdAt, p.status')
             ->getQuery()->getArrayResult();
 
         return $query;
@@ -30,7 +30,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function findOneArrayById($id)
     {
         $query = $this->createQueryBuilder('p')
-            ->select('p.id, p.title, p.description, p.deadline, p.createdAt, m.name AS manager')
+            ->select('p.id, p.title, p.description, p.deadline, p.createdAt, p.status, m.name AS manager')
             ->join('AppBundle:Manager', 'm', 'WITH', 'm.id = p.manager')
             ->where('p.id = :id')
             ->setParameter('id', $id)
@@ -38,5 +38,19 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()->getOneOrNullResult();
 
         return $query;
+    }
+
+    /**
+     * @param $projectId
+     * @param $status
+     */
+    public function updateStatus($projectId, $status)
+    {
+        $this->createQueryBuilder('p')
+            ->update()
+            ->set('p.status', ':status')
+            ->where('p.id = :projectId')
+            ->setParameters(['status' => $status, 'projectId' => $projectId])
+            ->getQuery()->execute();
     }
 }

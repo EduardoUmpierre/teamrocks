@@ -109,4 +109,17 @@ class ProjectService
         $this->em->remove($project);
         $this->em->flush();
     }
+
+    /**
+     * @param $projectId
+     * @param $status
+     */
+    public function updateStatus($projectId, $status)
+    {
+        try {
+            $this->repository->updateStatus($projectId, $status);
+        } catch(Exception $e) {
+
+        }
+    }
 }

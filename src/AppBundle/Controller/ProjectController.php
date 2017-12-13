@@ -52,4 +52,21 @@ class ProjectController extends Controller
 
         return new JsonResponse(['id' => $result], 201);
     }
+
+    /**
+     * @Route("/status")
+     * @Method("PUT")
+     */
+    public function updateStatusAction(Request $request, ProjectService $projectService)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        try {
+            $projectService->updateStatus($data['id'], $data['status']);
+        } catch (Exception $e) {
+            return new JsonResponse(['message' => $e->getMessage()]);
+        }
+
+        return new Response(null, 200);
+    }
 }

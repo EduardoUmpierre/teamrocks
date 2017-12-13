@@ -31,10 +31,10 @@ class TeamController extends Controller
 
         try {
             $team = $employeeSkillService->getTeamByBacklog($data['backlog'], $data['quantity']);
-
-            return new JsonResponse(['team' => $team]);
         } catch (Exception $e) {
             return new JsonResponse(['message' => $e->getMessage()]);
         }
+
+        return new JsonResponse(['team' => $team]);
     }
 }

@@ -32,15 +32,12 @@ class ProjectEmployeeRepository extends \Doctrine\ORM\EntityRepository
      */
     public function findEmployeeStatus($employeeId)
     {
-        $now = new \DateTime('now');
-        $now->setTime(0, 0, 0);
-
         $query = $this->createQueryBuilder('pe')
             ->select('p.id')
-            ->join('AppBundle:Project', 'p', 'WITH', 'p.id = pe.project')
+            ->leftJoin('AppBundle:Project', 'p', 'WITH', 'p.id = pe.project')
             ->where('pe.employee = :employeeId')
-            ->andWhere('p.deadline > :now')
-            ->setParameters(['employeeId' => $employeeId, 'now' => $now])
+            ->andWhere('p.status <= 2')
+            ->setParameter('employeeId', $employeeId)
             ->groupBy('pe.employee')
             ->getQuery()->getOneOrNullResult();
 

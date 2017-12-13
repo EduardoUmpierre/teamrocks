@@ -66,4 +66,19 @@ class ProjectEmployeeService
     {
         return $this->repository->findEmployeeStatus($employeeId);
     }
+
+    /**
+     * @param array $array
+     * @return array
+     */
+    public function removeNonAvailableEmployees(array $array)
+    {
+        foreach ($array as $key => $val) {
+            if (!$this->findEmployeeStatus($val['id'])) {
+                unset($array[$key]);
+            }
+        }
+
+        return $array;
+    }
 }

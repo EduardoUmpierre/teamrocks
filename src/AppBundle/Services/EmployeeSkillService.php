@@ -9,14 +9,16 @@ class EmployeeSkillService
 {
     private $repository;
     private $projectTaskService;
+    private $projectEmployeeService;
 
     /**
      * @param EntityManager $em
      */
-    public function __construct(EntityManager $em, ProjectTaskService $pts)
+    public function __construct(EntityManager $em, ProjectTaskService $pts, ProjectEmployeeService $pes)
     {
         $this->repository = $em->getRepository('AppBundle:EmployeeSkill');
         $this->projectTaskService = $pts;
+        $this->projectEmployeeService = $pes;
     }
 
     /**
@@ -28,7 +30,7 @@ class EmployeeSkillService
         $employeesSkills = [];
 
         foreach ($skills as $key => $val) {
-            $employeesSkills[$key] = $this->repository->getAllBySkill($key, $val);
+            $employeesSkills[$key] = $this->projectEmployeeService->removeNonAvailableEmployees($this->repository->getAllBySkill($key, $val));
 
             if (empty($employeesSkills[$key])) {
                 throw new Exception('Impossível montar um time com os requisitos necessários');

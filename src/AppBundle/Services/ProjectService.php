@@ -93,6 +93,7 @@ class ProjectService
         $project->setManager($this->managerService->findOneById($data['manager']));
         $project->setDescription($data['description']);
         $project->setDeadline(new \DateTime($data['deadline']));
+        $project->setStatus(0);
 
         $this->em->persist($project);
         $this->em->flush();

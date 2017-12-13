@@ -23,12 +23,13 @@ class EmployeeSkillRepository extends \Doctrine\ORM\EntityRepository
             ->join('AppBundle:Employee', 'e', 'WITH', 'es.employee = e.id')
             ->where('s.id = :skill')
             ->andWhere('es.level >= :level')
+            ->andWhere()
             ->orderBy('es.level', 'ASC')
             ->setParameters([
                 'skill' => $skill,
                 'level' => $level
-            ]);
+            ])->getQuery()->getArrayResult();
 
-        return $query->getQuery()->getArrayResult();
+        return $query;
     }
 }

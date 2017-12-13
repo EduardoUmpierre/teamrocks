@@ -22,6 +22,10 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
+                include: [ // use `include` vs `exclude` to white-list vs black-list
+                    path.resolve(__dirname, "src"), // white-list your app source files
+                    require.resolve("bootstrap-vue") // white-list bootstrap-vue
+                ],
                 exclude: /node_modules/
             },
             {
@@ -33,7 +37,7 @@ module.exports = {
             },
             {
                 test: /\.css?$/,
-                loader: 'style!css!sass'
+                loaders: ['style-loader', 'css-loader']
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,

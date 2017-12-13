@@ -2,28 +2,20 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import Notifications from 'vue-notification'
+import BootstrapVue from 'bootstrap-vue'
 
-import Home from './routes/Home.vue'
-import ProjectView from './routes/ProjectView.vue'
-import ProjectNew from './routes/ProjectNew.vue'
-import ProjectList from './routes/ProjectList.vue'
+import router from './router';
 
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 
+Vue.use(BootstrapVue);
 Vue.use(Notifications);
 Vue.use(VueResource);
 Vue.use(VueRouter);
 
-const router = new VueRouter({
-    routes: [
-        {path: '/', name: 'home', component: Home},
-        {path: '/projeto/novo', name: 'project_new', component: ProjectNew},
-        {path: '/projeto/:id', name: 'project_detail', component: ProjectView},
-        {path: '/projeto/listagem', name: 'project_list', component: ProjectList}
-    ],
-    mode: 'history',
-})
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 const app = new Vue({
     router,

@@ -3,7 +3,13 @@
 {% block body %}
     <div id="app">
         <header-view></header-view>
-        <router-view></router-view>
+
+        <main>
+            <transition name="fade">
+                <router-view></router-view>
+            </transition>
+        </main>
+
         <footer-view></footer-view>
     </div>
 {% endblock %}

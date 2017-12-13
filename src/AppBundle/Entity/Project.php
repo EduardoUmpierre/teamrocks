@@ -40,9 +40,16 @@ class Project
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="deadline", type="datetimetz", nullable=true)
+     * @ORM\Column(name="deadline", type="datetime", nullable=true)
      */
     private $deadline;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="status", type="smallint", options={"comment":"0 = Inativo; 1 = Ativo; 2 = Finalizado"})
+     */
+    private $status;
 
     /**
      * @ORM\ManyToOne(targetEntity="Manager")
@@ -157,6 +164,22 @@ class Project
     public function getDeadline()
     {
         return $this->deadline;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param int $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
     /**

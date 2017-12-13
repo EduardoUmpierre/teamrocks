@@ -5,7 +5,7 @@
 h2 {
     color: #263238;
     font-size: 2rem;
-    margin: 6rem 0 4rem;
+    margin: 4rem 0;
     position: relative;
 
     &:after {
@@ -21,7 +21,7 @@ h2 {
 
 h3 {
     color: #37474f;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin: 4rem 0 2rem;
 }
 
@@ -47,14 +47,14 @@ h3 {
             background-color: #eceff1;
             @include border-radius(3px);
             display: block;
-            padding: 2rem;
+            padding: 1.5rem;
             position: relative;
             @include transition(transform 300ms ease);
             @include transform-origin(50% 0);
 
             h3 {
                 color: #1f242c;
-                font-size: 1.85rem;
+                font-size: 1.25rem;
                 font-weight: 700;
                 line-height: 1em;
                 margin: 0 0 .5rem;
@@ -62,8 +62,10 @@ h3 {
 
             p {
                 color: rgba(37, 42, 52, 0.65);
-                font-size: 1.25rem;
+                font-size: 1rem;
+                line-height: 1.25;
                 margin: 0;
+                padding-right: 1.5rem;
             }
 
             ul {
@@ -76,7 +78,7 @@ h3 {
                     background-color: #eceff1;
                     @include border-radius(5px);
                     float: left;
-                    font-size: 1.25rem;
+                    font-size: 0.8rem;
                     line-height: 1em;
                     margin-right: 0.75rem;
                     padding: 0.5rem;
@@ -112,12 +114,12 @@ h3 {
 
                     > .status {
                         @include border-radius(50%);
-                        height: 1.25rem;
-                        margin: 0.25rem 0.25rem 0 0;
+                        height: 1rem;
+                        margin: 0.15rem 0.15rem 0 0;
                         position: absolute;
                         right: 0;
                         top: 0;
-                        width: 1.25rem;
+                        width: 1rem;
 
                         &.green {
                             background-color: $green;
@@ -130,7 +132,7 @@ h3 {
                 }
 
                 > div + div {
-                    margin-left: 1.5rem;
+                    margin-left: 1rem;
                 }
             }
 

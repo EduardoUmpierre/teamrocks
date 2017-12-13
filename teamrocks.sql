@@ -129,27 +129,35 @@ CREATE TABLE `projects` (
   `deadline` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `status` smallint(6) NOT NULL COMMENT '0 = Inativo; 1 = Ativo; 2 = Finalizado',
   PRIMARY KEY (`id`),
   KEY `IDX_5C93B3A424B98CC9` (`id_manager`),
   CONSTRAINT `FK_5C93B3A424B98CC9` FOREIGN KEY (`id_manager`) REFERENCES `managers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `projects` */
 
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (121,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 13:25:24','2017-10-18 13:25:24');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (122,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 14:52:57','2017-10-18 14:52:57');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (123,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 14:53:33','2017-10-18 14:53:33');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (124,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 15:06:57','2017-10-18 15:06:57');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (125,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 15:08:21','2017-10-18 15:08:21');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (126,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:53:33','2017-11-07 17:53:33');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (127,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:54:27','2017-11-07 17:54:27');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (128,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:54:57','2017-11-07 17:54:57');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (129,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:55:10','2017-11-07 17:55:10');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (130,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:55:36','2017-11-07 17:55:36');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (131,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-08 15:22:59','2017-11-08 15:22:59');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (132,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-08 15:27:18','2017-11-08 15:27:18');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (133,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-12-05 14:55:44','2017-12-05 14:55:44');
-insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`) values (134,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-12-05 16:09:41','2017-12-05 16:09:41');
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (121,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 13:25:24','2017-10-18 13:25:24',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (122,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 14:52:57','2017-10-18 14:52:57',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (123,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 14:53:33','2017-10-18 14:53:33',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (124,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 15:06:57','2017-10-18 15:06:57',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (125,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-10-18 15:08:21','2017-10-18 15:08:21',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (126,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:53:33','2017-11-07 17:53:33',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (127,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:54:27','2017-11-07 17:54:27',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (128,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:54:57','2017-11-07 17:54:57',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (129,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:55:10','2017-11-07 17:55:10',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (130,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-07 17:55:36','2017-11-07 17:55:36',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (131,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-08 15:22:59','2017-11-08 15:22:59',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (132,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-11-08 15:27:18','2017-11-08 15:27:18',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (133,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-12-05 14:55:44','2017-12-05 14:55:44',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (134,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-12-05 16:09:41','2017-12-05 16:09:41',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (135,1,'Título do projeto','Descrição do projeto','1996-01-12 00:00:00','2017-12-06 14:15:58','2017-12-06 14:15:58',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (136,1,'Título do projeto','Descrição do projeto','2018-01-12 00:00:00','2017-12-06 14:16:17','2017-12-06 14:16:17',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (137,1,'Título do projeto','Descrição do projeto','2018-01-02 00:00:00','2017-12-13 10:27:38','2017-12-13 10:27:38',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (138,1,'Título do projeto','Descrição do projeto','2018-01-02 00:00:00','2017-12-13 11:14:29','2017-12-13 11:14:29',1);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (139,1,'Título do projeto','Descrição do projeto','2018-01-02 00:00:00','2017-12-13 11:16:02','2017-12-13 11:16:02',1);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (140,1,'Título do projeto','Descrição do projeto','2018-01-02 00:00:00','2017-12-13 17:34:20','2017-12-13 17:34:20',2);
+insert  into `projects`(`id`,`id_manager`,`title`,`description`,`deadline`,`created_at`,`updated_at`,`status`) values (141,1,'Sistema gerenciador de gerenciamentos','Serviço disponibilizado para gerenciar','2018-01-02 00:00:00','2017-12-13 17:37:31','2017-12-13 17:37:31',1);
 
 /*Table structure for table `projects_employees` */
 
@@ -167,7 +175,7 @@ CREATE TABLE `projects_employees` (
   KEY `IDX_633E043FC485F31` (`id_projects`),
   CONSTRAINT `FK_633E043F3AB77F27` FOREIGN KEY (`id_employees`) REFERENCES `employees` (`id`),
   CONSTRAINT `FK_633E043FC485F31` FOREIGN KEY (`id_projects`) REFERENCES `projects` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `projects_employees` */
 
@@ -203,6 +211,21 @@ insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`cre
 insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (112,3,133,0,'2017-12-05 14:55:45','2017-12-05 14:55:45');
 insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (113,1,134,0,'2017-12-05 16:09:42','2017-12-05 16:09:42');
 insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (114,3,134,0,'2017-12-05 16:09:42','2017-12-05 16:09:42');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (115,1,135,0,'2017-12-06 14:15:58','2017-12-06 14:15:58');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (116,3,135,0,'2017-12-06 14:15:58','2017-12-06 14:15:58');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (117,1,136,0,'2017-12-06 14:16:17','2017-12-06 14:16:17');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (118,3,136,0,'2017-12-06 14:16:17','2017-12-06 14:16:17');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (119,1,137,0,'2017-12-13 10:27:38','2017-12-13 10:27:38');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (120,3,137,0,'2017-12-13 10:27:38','2017-12-13 10:27:38');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (121,4,138,0,'2017-12-13 11:14:30','2017-12-13 11:14:30');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (122,6,138,0,'2017-12-13 11:14:30','2017-12-13 11:14:30');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (123,5,139,0,'2017-12-13 11:16:02','2017-12-13 11:16:02');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (124,8,139,0,'2017-12-13 11:16:02','2017-12-13 11:16:02');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (125,1,140,0,'2017-12-13 17:34:21','2017-12-13 17:34:21');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (126,3,140,0,'2017-12-13 17:34:21','2017-12-13 17:34:21');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (127,1,141,0,'2017-12-13 17:37:32','2017-12-13 17:37:32');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (128,2,141,0,'2017-12-13 17:37:32','2017-12-13 17:37:32');
+insert  into `projects_employees`(`id`,`id_employees`,`id_projects`,`level`,`created_at`,`updated_at`) values (129,3,141,0,'2017-12-13 17:37:32','2017-12-13 17:37:32');
 
 /*Table structure for table `projects_employees_skills` */
 
@@ -219,7 +242,7 @@ CREATE TABLE `projects_employees_skills` (
   KEY `IDX_DE3A3854F306A39D` (`id_skills`),
   CONSTRAINT `FK_DE3A3854E01CB690` FOREIGN KEY (`id_projects_employees`) REFERENCES `projects_employees` (`id`),
   CONSTRAINT `FK_DE3A3854F306A39D` FOREIGN KEY (`id_skills`) REFERENCES `skills` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `projects_employees_skills` */
 
@@ -275,6 +298,27 @@ insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills
 insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (50,113,4,'2017-12-05 16:09:42','2017-12-05 16:09:42');
 insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (51,114,1,'2017-12-05 16:09:42','2017-12-05 16:09:42');
 insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (52,114,2,'2017-12-05 16:09:42','2017-12-05 16:09:42');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (53,115,4,'2017-12-06 14:15:58','2017-12-06 14:15:58');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (54,116,1,'2017-12-06 14:15:58','2017-12-06 14:15:58');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (55,116,2,'2017-12-06 14:15:58','2017-12-06 14:15:58');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (56,117,4,'2017-12-06 14:16:17','2017-12-06 14:16:17');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (57,118,1,'2017-12-06 14:16:17','2017-12-06 14:16:17');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (58,118,2,'2017-12-06 14:16:17','2017-12-06 14:16:17');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (59,119,4,'2017-12-13 10:27:38','2017-12-13 10:27:38');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (60,120,1,'2017-12-13 10:27:38','2017-12-13 10:27:38');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (61,120,2,'2017-12-13 10:27:38','2017-12-13 10:27:38');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (62,121,1,'2017-12-13 11:14:30','2017-12-13 11:14:30');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (63,121,2,'2017-12-13 11:14:30','2017-12-13 11:14:30');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (64,122,4,'2017-12-13 11:14:30','2017-12-13 11:14:30');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (65,123,3,'2017-12-13 11:16:02','2017-12-13 11:16:02');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (66,124,1,'2017-12-13 11:16:02','2017-12-13 11:16:02');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (67,125,4,'2017-12-13 17:34:21','2017-12-13 17:34:21');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (68,126,1,'2017-12-13 17:34:21','2017-12-13 17:34:21');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (69,126,2,'2017-12-13 17:34:21','2017-12-13 17:34:21');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (70,127,4,'2017-12-13 17:37:32','2017-12-13 17:37:32');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (71,128,3,'2017-12-13 17:37:32','2017-12-13 17:37:32');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (72,128,5,'2017-12-13 17:37:32','2017-12-13 17:37:32');
+insert  into `projects_employees_skills`(`id`,`id_projects_employees`,`id_skills`,`created_at`,`updated_at`) values (73,129,1,'2017-12-13 17:37:32','2017-12-13 17:37:32');
 
 /*Table structure for table `projects_tasks` */
 
@@ -297,7 +341,7 @@ CREATE TABLE `projects_tasks` (
   CONSTRAINT `FK_C5D931A93AB77F27` FOREIGN KEY (`id_employees`) REFERENCES `employees` (`id`),
   CONSTRAINT `FK_C5D931A9C485F31` FOREIGN KEY (`id_projects`) REFERENCES `projects` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_C5D931A9F306A39D` FOREIGN KEY (`id_skills`) REFERENCES `skills` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `projects_tasks` */
 
@@ -353,6 +397,27 @@ insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`descriptio
 insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (50,134,1,'Exemplo','O que deve ser feito',3,'2017-12-05 16:09:41','2017-12-05 16:09:41',3);
 insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (51,134,2,'Exemplo','O que deve ser feito',2,'2017-12-05 16:09:41','2017-12-05 16:09:41',3);
 insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (52,134,4,'Exemplo','O que deve ser feito',2,'2017-12-05 16:09:42','2017-12-05 16:09:42',1);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (53,135,1,'Exemplo','O que deve ser feito',3,'2017-12-06 14:15:58','2017-12-06 14:15:58',3);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (54,135,2,'Exemplo','O que deve ser feito',2,'2017-12-06 14:15:58','2017-12-06 14:15:58',3);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (55,135,4,'Exemplo','O que deve ser feito',2,'2017-12-06 14:15:58','2017-12-06 14:15:58',1);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (56,136,1,'Exemplo','O que deve ser feito',3,'2017-12-06 14:16:17','2017-12-06 14:16:17',3);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (57,136,2,'Exemplo','O que deve ser feito',2,'2017-12-06 14:16:17','2017-12-06 14:16:17',3);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (58,136,4,'Exemplo','O que deve ser feito',2,'2017-12-06 14:16:17','2017-12-06 14:16:17',1);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (59,137,1,'Exemplo','O que deve ser feito',3,'2017-12-13 10:27:38','2017-12-13 10:27:38',3);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (60,137,2,'Exemplo','O que deve ser feito',2,'2017-12-13 10:27:38','2017-12-13 10:27:38',3);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (61,137,4,'Exemplo','O que deve ser feito',2,'2017-12-13 10:27:38','2017-12-13 10:27:38',1);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (62,138,1,'Exemplo','O que deve ser feito',3,'2017-12-13 11:14:30','2017-12-13 11:14:30',4);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (63,138,2,'Exemplo','O que deve ser feito',2,'2017-12-13 11:14:30','2017-12-13 11:14:30',4);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (64,138,4,'Exemplo','O que deve ser feito',2,'2017-12-13 11:14:30','2017-12-13 11:14:30',6);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (65,139,1,'Exemplo','O que deve ser feito',1,'2017-12-13 11:16:02','2017-12-13 11:16:02',8);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (66,139,3,'Exemplo','O que deve ser feito',1,'2017-12-13 11:16:02','2017-12-13 11:16:02',5);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (67,140,1,'Exemplo','O que deve ser feito',3,'2017-12-13 17:34:20','2017-12-13 17:34:20',3);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (68,140,2,'Exemplo','O que deve ser feito',2,'2017-12-13 17:34:21','2017-12-13 17:34:21',3);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (69,140,4,'Exemplo','O que deve ser feito',2,'2017-12-13 17:34:21','2017-12-13 17:34:21',1);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (70,141,1,'Desenvolver o back-end','Symfony e MySQL',3,'2017-12-13 17:37:31','2017-12-13 17:37:31',3);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (71,141,3,'Desenvolver a estrutura do site','O que deve ser feito',2,'2017-12-13 17:37:31','2017-12-13 17:37:31',2);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (72,141,5,'Desenvolver os estilos do site','O que deve ser feito',2,'2017-12-13 17:37:31','2017-12-13 17:37:31',2);
+insert  into `projects_tasks`(`id`,`id_projects`,`id_skills`,`title`,`description`,`level`,`created_at`,`updated_at`,`id_employees`) values (73,141,4,'Consumir a API restFUL','O que deve ser feito',2,'2017-12-13 17:37:32','2017-12-13 17:37:32',1);
 
 /*Table structure for table `skills` */
 

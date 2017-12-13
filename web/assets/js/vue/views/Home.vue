@@ -3,7 +3,7 @@
         <section id="home-header">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <div class="subtitle">Dê os primeiros passos</div>
                         <div class="title">Monte seu projeto e crie seu time dos sonhos!</div>
 
@@ -25,14 +25,14 @@
         <section>
             <div class="container">
                 <div class="row" id="projetos">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <h2>Projetos criados</h2>
                         <project-list></project-list>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <h2>Funcionários</h2>
                         <team-list v-bind:team="employees"></team-list>
                     </div>

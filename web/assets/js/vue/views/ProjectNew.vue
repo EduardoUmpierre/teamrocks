@@ -2,7 +2,7 @@
     <main id="project-new">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-12">
                     <h2>Novo projeto</h2>
 
                     <form v-on:submit.prevent="generateTeam">
@@ -23,13 +23,13 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-xs-4">
+                            <div class="col-4">
                                 <label for="deadline">Prazo</label>
                                 <input type="text" name="deadline" class="form-control" id="deadline"
                                        v-model="project.deadline">
                             </div>
 
-                            <div class="col-xs-4">
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label for="manager">Gestor</label>
 
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-4">
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label for="quantity">Quantidade máxima de componentes no time</label>
                                     <input type="text" name="quantity" class="form-control" id="quantity"
@@ -58,21 +58,21 @@
 
                         <div class="backlog-list" v-for="(task, index) in project.backlog">
                             <div class="row">
-                                <div class="col-xs-3">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label>Título</label>
                                         <input type="text" class="form-control" v-model="task.title">
                                     </div>
                                 </div>
 
-                                <div class="col-xs-3">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label>Descrição</label>
                                         <input type="text" class="form-control" v-model="task.description">
                                     </div>
                                 </div>
 
-                                <div class="col-xs-3">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label>Competência necessária</label>
                                         <select class="form-control" v-model="task.skill">
@@ -81,14 +81,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xs-2">
+                                <div class="col-2">
                                     <div class="form-group">
                                         <label>Nível</label>
                                         <input type="text" class="form-control" v-model="task.level">
                                     </div>
                                 </div>
 
-                                <div class="col-xs-1">
+                                <div class="col-1">
                                     <a href="#" @click="removeTask(index, $event)">
                                         <i class="fa fa-times"></i>
                                     </a>
@@ -140,7 +140,7 @@
             @include align-items(center);
             @include flexbox();
 
-            > .col-xs-1 > a {
+            > .col-1 > a {
                 color: #ffcdd2;
                 display: block;
                 font-size: 2rem;

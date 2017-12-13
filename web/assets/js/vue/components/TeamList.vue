@@ -1,6 +1,6 @@
 <template>
     <div class="row item-list">
-        <div v-bind:class="'col-md-' + size" class="col-xs-12 col-sm-4"
+        <div v-bind:class="'col-md-' + size" class="col col-xs-12 col-sm-4"
              v-for="person in sortedTeam">
             <router-link :to="{ name: 'home'}" class="inline transparent">
                 <div class="image-container">

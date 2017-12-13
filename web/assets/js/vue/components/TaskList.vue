@@ -1,6 +1,6 @@
 <template>
     <div class="row item-list">
-        <div class="col-xs-12 col-sm-4 col-lg-3"
+        <div class="col col-xs-12 col-sm-4 col-lg-3"
              v-for="task in tasks">
             <router-link :to="{ name: 'home'}">
                 <h3>{{ task.title }} - {{ task.skill }}</h3>

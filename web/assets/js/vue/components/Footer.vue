@@ -30,7 +30,7 @@
         background-color: #252a34;
         color: #FFF;
         margin-top: 4rem;
-        padding: 8rem 0;
+        padding: 6rem 0;
 
         h4 {
             font-size: 1.5rem;
@@ -56,7 +56,7 @@
                     display: block;
 
                     > img {
-                        max-width: 50px;
+                        max-width: 30px;
                     }
                 }
             }

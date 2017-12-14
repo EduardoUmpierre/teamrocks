@@ -36,7 +36,7 @@ class ProjectEmployeeRepository extends \Doctrine\ORM\EntityRepository
             ->select('p.id')
             ->leftJoin('AppBundle:Project', 'p', 'WITH', 'p.id = pe.project')
             ->where('pe.employee = :employeeId')
-            ->andWhere('p.status < 2')
+            ->andWhere('p.status = 1')
             ->setParameter('employeeId', $employeeId)
             ->groupBy('pe.employee')
             ->getQuery()->getOneOrNullResult();

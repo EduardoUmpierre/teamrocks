@@ -34,7 +34,7 @@
         name: 'team-list',
         props: {
             'team': {
-                type: Array
+                type: Array | Object
             },
             'size': {
                 type: Number,

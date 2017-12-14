@@ -26,7 +26,7 @@
                             <div class="col-4">
                                 <label for="deadline">Prazo</label>
                                 <input type="text" name="deadline" class="form-control" id="deadline"
-                                       v-model="project.deadline">
+                                       v-model="project.deadline" v-mask="'##/##/####'" placeholder="dd/mm/YYYY">
                             </div>
 
                             <div class="col-4">
@@ -163,12 +163,16 @@
 <script>
     import Modal from '../components/Modal.vue'
     import TeamList from '../components/TeamList.vue'
+    import {mask} from 'vue-the-mask'
 
     export default {
         name: 'project-new',
         components: {
             'modal': Modal,
             'team-list': TeamList
+        },
+        directives: {
+            'mask': mask
         },
         data: function () {
             return {

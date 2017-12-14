@@ -26,7 +26,7 @@ class ManagerService
 
     /**
      * @param $id
-     * @return null|object
+     * @return \AppBundle\Entity\Manager
      */
     public function findOneById($id)
     {

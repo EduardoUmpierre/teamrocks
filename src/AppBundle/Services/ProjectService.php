@@ -87,8 +87,6 @@ class ProjectService
      */
     private function insert($data)
     {
-        $deadline = ;
-
         $project = new Project();
         $project->setTitle($data['title']);
         $project->setManager($this->managerService->findOneById($data['manager']));

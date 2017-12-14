@@ -4,7 +4,6 @@ namespace AppBundle\Services;
 
 use AppBundle\Entity\Project;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Config\Definition\Exception\Exception;
 
 class ProjectService
 {
@@ -88,11 +87,13 @@ class ProjectService
      */
     private function insert($data)
     {
+        $deadline = ;
+
         $project = new Project();
         $project->setTitle($data['title']);
         $project->setManager($this->managerService->findOneById($data['manager']));
         $project->setDescription($data['description']);
-        $project->setDeadline(new \DateTime($data['deadline']));
+        $project->setDeadline(\DateTime::createFromFormat('d/m/Y', $data['deadline']));
         $project->setStatus(0);
 
         $this->em->persist($project);
@@ -116,10 +117,6 @@ class ProjectService
      */
     public function updateStatus($projectId, $status)
     {
-        try {
-            $this->repository->updateStatus($projectId, $status);
-        } catch(Exception $e) {
-
-        }
+        $this->repository->updateStatus($projectId, $status);
     }
 }

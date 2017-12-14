@@ -1,4 +1,11 @@
+@import "../helpers/mixins";
+
 .b-dropdown {
+
+    > .btn {
+        cursor: pointer;
+        @include transition(background-color 300ms ease);
+    }
 
     a {
         outline: none;

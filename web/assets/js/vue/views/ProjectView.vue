@@ -15,7 +15,7 @@
                                     v-bind:text="project.status == 0 ? 'Iniciar projeto' : (project.status == 2 ? 'Projeto encerrado' : 'Finalizar projeto')"
                                     class="m-2 pull-right"
                                     @click="updateStatus(project.status == 0 ? 1 : (project.status == 1 ? 2 : 1))">
-                                <b-dropdown-item v-if="project.status == 1" href="#">Pausar</b-dropdown-item>
+                                <b-dropdown-item v-if="project.status == 1" @click="updateStatus(0)">Pausar</b-dropdown-item>
                                 <b-dropdown-item href="#">Apagar</b-dropdown-item>
                             </b-dropdown>
                         </h2>

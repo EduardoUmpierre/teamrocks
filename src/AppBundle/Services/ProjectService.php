@@ -66,6 +66,7 @@ class ProjectService
      * @param $data
      * @param $team
      * @return int
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function create($data, $team)
     {
@@ -84,6 +85,7 @@ class ProjectService
     /**
      * @param $data
      * @return Project
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     private function insert($data)
     {
@@ -102,8 +104,9 @@ class ProjectService
 
     /**
      * @param Project $project
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    private function remove(Project $project)
+    public function remove(Project $project)
     {
         $this->em->remove($project);
         $this->em->flush();

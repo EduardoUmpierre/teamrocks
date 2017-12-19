@@ -22,3 +22,4 @@
 .idea
 npm-debug.log.*
 /web/assets/dist/*
+**/Thumbs.db

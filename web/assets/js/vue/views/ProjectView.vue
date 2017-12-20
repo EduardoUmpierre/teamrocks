@@ -16,7 +16,7 @@
                                     class="m-2 pull-right"
                                     @click="updateStatus(project.status == 0 ? 1 : (project.status == 1 ? 2 : 1))">
                                 <b-dropdown-item v-if="project.status == 1" @click="updateStatus(0)">Pausar</b-dropdown-item>
-                                <b-dropdown-item href="#">Apagar</b-dropdown-item>
+                                <b-dropdown-item @click="remove()">Apagar</b-dropdown-item>
                             </b-dropdown>
                         </h2>
                     </div>
@@ -119,13 +119,13 @@
         methods: {
             getProjectData: function (id) {
                 this.$http
-                        .get('/api/v1/projects/' + id)
-                        .then(function (response) {
-                            console.log(response.data);
-                            this.project = response.data;
-                        }, function (error) {
-                            console.log(error);
-                        })
+                    .get('/api/v1/projects/' + id)
+                    .then(function (response) {
+                        console.log(response.data);
+                        this.project = response.data;
+                    }, function (error) {
+                        console.log(error);
+                    })
             },
             updateStatus: function (status) {
                 if (status == 0 || status == 1 || status == 2) {
@@ -133,18 +133,27 @@
                         status: status,
                         id: this.project.id
                     }, {headers: {'Content-Type': 'application/json'}})
-                            .then(function (response) {
-                                console.log(response.data);
+                        .then(function (response) {
+                            console.log(response.data);
 
-                                if (response.status == 200) {
-                                    this.project.status = status;
-                                } else {
-                                    console.log('Error', response.data.message);
-                                }
-                            }, function (error) {
-                                console.log('Error', error.message);
-                            });
+                            if (response.status == 200) {
+                                this.project.status = status;
+                            } else {
+                                console.log('Error', response.data.message);
+                            }
+                        }, function (error) {
+                            console.log('Error', error.message);
+                        });
                 }
+            },
+            remove: function () {
+                this.$http
+                    .delete('/api/v1/projects/' + this.project.id)
+                    .then(function (response) {
+                        console.log(response.data);
+                    }, function (error) {
+                        console.log(error);
+                    })
             }
         },
         mounted: function () {

@@ -58,7 +58,7 @@ class Project
     private $manager;
 
     /**
-     * @ORM\OneToMany(targetEntity="ProjectEmployee", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="ProjectEmployee", mappedBy="project", cascade={"remove"})
      */
     private $projectEmployee;
 

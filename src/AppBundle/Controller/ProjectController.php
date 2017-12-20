@@ -69,4 +69,19 @@ class ProjectController extends Controller
 
         return new Response(null, 200);
     }
+
+    /**
+     * @Route("/{id}")
+     * @Method("DELETE")
+     */
+    public function delete(ProjectService $projectService, $id)
+    {
+        try {
+            $projectService->remove($projectService->findOneById($id));
+        } catch (Exception $e) {
+            return new JsonResponse(['message' => $e->getMessage()]);
+        }
+
+        return new Response(null, 200);
+    }
 }

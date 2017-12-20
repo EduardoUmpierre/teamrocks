@@ -28,7 +28,8 @@ class ProjectEmployeeRepository extends \Doctrine\ORM\EntityRepository
 
     /**
      * @param $employeeId
-     * @return array
+     * @return bool
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findEmployeeStatus($employeeId)
     {
@@ -42,5 +43,22 @@ class ProjectEmployeeRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()->getOneOrNullResult();
 
         return $query ? false : true;
+    }
+
+    /**
+     * @param $employeeId
+     * @return array
+     */
+    public function findAllByEmployee($employeeId)
+    {
+        $query = $this->createQueryBuilder('pe')
+            ->select('p.id, p.title, p.deadline, p.createdAt, p.status')
+            ->join('AppBundle:Project', 'p', 'WITH', 'pe.project = p.id')
+            ->where('pe.employee = :id')
+            ->orderBy('p.status')
+            ->setParameter('id', $employeeId)
+            ->getQuery()->getArrayResult();
+
+        return $query;
     }
 }

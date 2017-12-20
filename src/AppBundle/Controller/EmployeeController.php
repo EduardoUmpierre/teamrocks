@@ -23,4 +23,13 @@ class EmployeeController extends Controller
     {
         return new JsonResponse($employeeService->findAll());
     }
+
+    /**
+     * @Route("/{id}")
+     * @Method("GET")
+     */
+    public function showAction(EmployeeService $employeeService, $id)
+    {
+        return new JsonResponse($employeeService->findOneDataById($id));
+    }
 }

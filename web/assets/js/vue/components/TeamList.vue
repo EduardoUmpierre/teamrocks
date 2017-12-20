@@ -2,7 +2,7 @@
     <div class="row item-list">
         <div v-bind:class="'col-md-' + size" class="col col-xs-12 col-sm-4"
              v-for="person in sortedTeam">
-            <router-link :to="{ name: 'home'}" class="inline transparent">
+            <router-link :to="{ name: 'employee_detail', params: { id: person.id } }" class="inline transparent">
                 <div class="image-container">
                     <img src="http://www.placehold.it/50" class="img-responsive">
 
@@ -12,13 +12,13 @@
                 <div class="content-container">
                     <h3>{{ person.name }}</h3>
 
-                    <ul>
-                        <li v-for="skill in person.skills">
-                            {{ skill.name }}
-                        </li>
-                    </ul>
+                    <skill-list v-bind:skills="person.skills"></skill-list>
                 </div>
             </router-link>
+        </div>
+
+        <div class="col" v-if="sortedTeam.length === 0">
+            <p>Nenhum funcionário encontrado</p>
         </div>
     </div>
 </template>
@@ -29,9 +29,13 @@
 
 <script>
     import { orderBy, isEmpty } from 'lodash';
+    import SkillList from './SkillList.vue';
 
     export default {
         name: 'team-list',
+        components: {
+            'skill-list': SkillList
+        },
         props: {
             'team': {
                 type: Array | Object

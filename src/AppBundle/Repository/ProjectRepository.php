@@ -16,7 +16,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function findAll()
     {
         $query = $this->createQueryBuilder('p')
-            ->select('p.id, p.title, p.description, p.deadline, p.createdAt, p.status')
+            ->select('p.id, p.title, p.deadline, p.createdAt, p.status')
             ->getQuery()->getArrayResult();
 
         return $query;

@@ -8,18 +8,20 @@ class EmployeeService
 {
     private $repository;
     private $projectEmployeeService;
+    private $employeeSkillService;
 
     /**
      * EmployeeService constructor.
      */
-    public function __construct(EntityManager $em, ProjectEmployeeService $pes)
+    public function __construct(EntityManager $em, ProjectEmployeeService $pes, EmployeeSkillService $ess)
     {
         $this->repository = $em->getRepository('AppBundle:Employee');
         $this->projectEmployeeService = $pes;
+        $this->employeeSkillService = $ess;
     }
 
     /**
-     * @return null|object
+     * @return array
      */
     public function findAll()
     {
@@ -39,5 +41,18 @@ class EmployeeService
     public function findOneById($id)
     {
         return $this->repository->findOneBy(['id' => $id]);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function findOneDataById($id)
+    {
+        $employee = $this->repository->findOneArrayById($id);
+        $employee['skills'] = $this->employeeSkillService->findAllByEmployee($id);
+        $employee['projects'] = $this->projectEmployeeService->findAllByEmployee($id);
+
+        return $employee;
     }
 }

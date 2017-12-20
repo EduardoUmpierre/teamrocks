@@ -11,6 +11,10 @@
                 </span>
             </router-link>
         </div>
+
+        <div class="col" v-if="tasks.length === 0">
+            <p>Nenhuma tarefa encontrada</p>
+        </div>
     </div>
 </template>
 

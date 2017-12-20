@@ -1,14 +1,16 @@
 <template>
     <div class="row item-list">
-        <div class="col col-xs-12 col-sm-4 col-lg-3"
-             v-for="project in projects">
+        <div class="col col-xs-12 col-sm-4 col-lg-3" v-for="project in projects">
             <router-link
-                    :to="{ name: 'project_detail', params: { id: project.id }}"
-                    @click="getProjectData(project.id)"
+                    :to="{ name: 'project_detail', params: { id: project.id } }"
                     v-bind:class="project.status == 0 ? 'inactive' : (project.status == 2 ? 'finished' : 'active')">
                 <h3>{{ project.title }}</h3>
                 <p>{{ project.description }}</p>
             </router-link>
+        </div>
+
+        <div class="col" v-if="projects.length === 0">
+            <p>Nenhum projeto encontrado</p>
         </div>
     </div>
 </template>
@@ -37,34 +39,10 @@
 <script>
     export default {
         name: 'project-list',
-        data: function () {
-            return {
-                projects: []
+        props: {
+            'projects': {
+                type: Array
             }
-        },
-        methods: {
-            getProjectsData: function () {
-                this.$http
-                    .get('/api/v1/projects')
-                    .then(function (response) {
-                        this.projects = response.data;
-                    }, function (error) {
-                        console.log(error);
-                    })
-            },
-            getProjectData: function (id) {
-                this.$http
-                    .get('/api/v1/projects/' + id)
-                    .then(function (response) {
-                        console.log(response.data);
-                        this.project = response.data;
-                    }, function (error) {
-                        console.log(error);
-                    });
-            }
-        },
-        mounted: function () {
-            this.getProjectsData()
         }
     }
 </script>

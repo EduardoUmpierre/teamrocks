@@ -12,9 +12,7 @@
                             Listar projetos
                         </a>
 
-                        <router-link
-                                :to="{ name: 'project_new' }"
-                                class="button green">
+                        <router-link :to="{ name: 'project_new' }" class="button green">
                             Novo projeto
                         </router-link>
                     </div>
@@ -27,13 +25,21 @@
                 <div class="row" id="projetos">
                     <div class="col-12">
                         <h2>Projetos criados</h2>
-                        <project-list></project-list>
+
+                        <project-list v-bind:projects="projects"></project-list>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
-                        <h2>Funcionários</h2>
+                        <h2 class="aside-button">
+                            Funcionários
+
+                            <button class="button green small pull-right" type="button">
+                                Adicionar funcionário
+                            </button>
+                        </h2>
+
                         <team-list v-bind:team="employees"></team-list>
                     </div>
                 </div>
@@ -89,22 +95,33 @@
         },
         data: function () {
             return {
-                employees: null
+                employees: [],
+                projects: []
             }
         },
         methods: {
             getEmployees: function () {
                 this.$http
-                        .get('/api/v1/employees')
-                        .then(function (response) {
-                            this.employees = response.data;
-                        }, function (error) {
-                            console.log(error);
-                        })
+                    .get('/api/v1/employees')
+                    .then(function (response) {
+                        this.employees = response.data;
+                    }, function (error) {
+                        console.log(error);
+                    })
+            },
+            getProjects: function () {
+                this.$http
+                    .get('/api/v1/projects')
+                    .then(function (response) {
+                        this.projects = response.data;
+                    }, function (error) {
+                        console.log(error);
+                    })
             }
         },
         mounted: function () {
             this.getEmployees();
+            this.getProjects()
         }
     }
 </script>

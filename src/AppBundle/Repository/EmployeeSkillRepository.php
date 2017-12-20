@@ -32,4 +32,20 @@ class EmployeeSkillRepository extends \Doctrine\ORM\EntityRepository
 
         return $query;
     }
+
+    /**
+     * @param $employee
+     * @return array
+     */
+    public function findAllByEmployee($employee)
+    {
+        $query = $this->createQueryBuilder('es')
+            ->select('s.name, es.level')
+            ->join('AppBundle:Skill', 's', 'WITH', 's.id = es.skill')
+            ->where('es.employee = :id')
+            ->setParameter('id', $employee)
+            ->getQuery()->getArrayResult();
+
+        return $query;
+    }
 }

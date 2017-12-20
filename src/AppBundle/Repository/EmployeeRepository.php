@@ -20,4 +20,21 @@ class EmployeeRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getQuery()->getArrayResult();
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneArrayById($id)
+    {
+        $query = $this->createQueryBuilder('e')
+            ->select('e.id, e.name')
+            ->where('e.id = :id')
+            ->setParameter('id', $id)
+            ->setMaxResults(1)
+            ->getQuery()->getOneOrNullResult();
+
+        return $query;
+    }
 }

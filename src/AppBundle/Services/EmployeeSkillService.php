@@ -135,4 +135,13 @@ class EmployeeSkillService
 
         return $this->getTeamByLimit($requirements, $quantity);
     }
+
+    /**
+     * @param $employee
+     * @return mixed
+     */
+    public function findAllByEmployee($employee)
+    {
+        return $this->repository->findAllByEmployee($employee);
+    }
 }

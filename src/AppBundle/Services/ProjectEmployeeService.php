@@ -25,6 +25,7 @@ class ProjectEmployeeService
     /**
      * @param $team
      * @param Project $project
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function insert($team, Project $project)
     {
@@ -80,5 +81,14 @@ class ProjectEmployeeService
         }
 
         return $array;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function findAllByEmployee($id)
+    {
+        return $this->repository->findAllByEmployee($id);
     }
 }
